@@ -456,17 +456,25 @@
         if (hint && original) hint.textContent = original;
       }, 1800);
     }
-    if (navigator.clipboard && window.isSecureContext) {
-      navigator.clipboard.writeText(valor).then(marcarCopiado).catch(function () {});
-    } else {
+    function marcarError() {
+      if (hint) hint.textContent = "Copialo a mano: " + valor;
+    }
+    function copiarConExecCommand() {
       var ta = document.createElement("textarea");
       ta.value = valor;
       ta.style.position = "fixed";
       ta.style.opacity = "0";
       document.body.appendChild(ta);
       ta.select();
-      try { document.execCommand("copy"); marcarCopiado(); } catch (e) {}
+      var ok = false;
+      try { ok = document.execCommand("copy"); } catch (e) { ok = false; }
       document.body.removeChild(ta);
+      if (ok) marcarCopiado(); else marcarError();
+    }
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(valor).then(marcarCopiado).catch(copiarConExecCommand);
+    } else {
+      copiarConExecCommand();
     }
   }
 
