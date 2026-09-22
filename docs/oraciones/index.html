@@ -114,6 +114,15 @@
   @media (max-width:600px){ .oracion-card{padding:40px 24px;} .oracion-text{font-size:16px;} }
 
   /* Rosario */
+  .rosario-layout{display:flex;gap:44px;align-items:flex-start;justify-content:center;}
+  .rosario-content{flex:1 1 660px;max-width:660px;}
+  .rosario-art{flex:0 0 260px;max-width:260px;position:sticky;top:100px;}
+  .rosario-art img{
+    width:100%;height:auto;display:block;
+    -webkit-mask-image:radial-gradient(ellipse 62% 58% at center, #000 55%, transparent 88%);
+    mask-image:radial-gradient(ellipse 62% 58% at center, #000 55%, transparent 88%);
+  }
+  @media (max-width:900px){ .rosario-art{display:none;} }
   .rosario-intro{text-align:center;margin-bottom:44px;}
   .rosario-intro h2{font-size:clamp(24px,3.4vw,32px);margin-bottom:14px;}
   .rosario-intro p{color:var(--muted);font-size:16px;}
@@ -230,7 +239,9 @@
 </section>
 
 <section class="rosario" id="rosario">
-  <div class="container-narrow">
+  <div class="container">
+    <div class="rosario-layout">
+    <div class="rosario-content">
     <div class="rosario-intro">
       <span class="eyebrow">Oración</span>
       <h2>Santo Rosario por la Vida</h2>
@@ -371,6 +382,11 @@
     </div>
 
     <p class="rosario-fuente">Fuente: <a href="https://desdelafe.mx/rosarios/rosario-por-la-vida-como-se-reza/" target="_blank" rel="noopener">desdelafe.mx</a></p>
+    </div>
+    <div class="rosario-art">
+      <img src="../assets/virgen-perpetuo-socorro.jpg" alt="Nuestra Señora del Perpetuo Socorro" loading="lazy">
+    </div>
+    </div>
   </div>
 </section>
 
