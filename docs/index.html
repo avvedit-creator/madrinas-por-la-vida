@@ -195,8 +195,8 @@
   .localidades{background:var(--paper-alt);}
   .loc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;}
   .loc-card{
-    position:relative;border-radius:12px;overflow:hidden;aspect-ratio:4/5;
-    box-shadow:0 16px 30px -18px rgba(43,36,32,.4);
+    display:block;position:relative;border-radius:12px;overflow:hidden;aspect-ratio:4/5;
+    box-shadow:0 16px 30px -18px rgba(43,36,32,.4);text-decoration:none;color:inherit;
   }
   .loc-card img{width:100%;height:100%;object-fit:cover;filter:brightness(.85);transition:transform .4s ease;}
   .loc-card:hover img{transform:scale(1.05);}
@@ -395,6 +395,10 @@
         <img src="https://images.squarespace-cdn.com/content/v1/5b58e6d7a2772c975945ec1a/1562607213451-KOT321H30Q6LU8LBJKT2/GABIRELITA20190701.jpg" alt="Centro en Colombia">
         <div class="loc-label"><span class="tag">Internacional</span><h3>Colombia</h3></div>
       </div>
+      <a class="loc-card" href="oraciones/#oracion" aria-label="Ir a Oraciones por la Vida">
+        <img src="assets/logo.jpg" alt="Madrinas Por La Vida">
+        <div class="loc-label"><span class="tag">Recemos juntos</span><h3>Oraciones</h3></div>
+      </a>
     </div>
   </div>
 </section>
