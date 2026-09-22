@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Madrinas Por La Vida — Apoyo a mujeres embarazadas en Uruguay</title>
+<meta name="description" content="ONG católica que acompaña a madres jóvenes en situación de vulnerabilidad social en Uruguay: apoyo, contención y asesoramiento a mujeres embarazadas.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,500&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#2B2420;
+    --paper:#FBF6EC;
+    --paper-alt:#F3ECDD;
+    --primary:#C1523A;
+    --primary-dark:#9C3F2C;
+    --sage:#6E7F5C;
+    --gold:#C99A3E;
+    --muted:#7A6E62;
+    --line:#E4DACB;
+    --white:#FFFFFF;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Work Sans', sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    line-height:1.6;
+  }
+  h1,h2,h3,.serif{font-family:'Lora', serif;}
+  img{max-width:100%;display:block;}
+  a{color:inherit;text-decoration:none;}
+  .container{max-width:1120px;margin:0 auto;padding:0 24px;}
+  .eyebrow{
+    font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--primary);margin-bottom:10px;display:inline-block;
+  }
+  .btn{
+    display:inline-block;padding:14px 30px;border-radius:30px;font-weight:600;
+    font-size:15px;letter-spacing:.01em;transition:transform .15s ease;
+  }
+  .btn:hover{transform:translateY(-2px);}
+  .btn-primary{background:var(--primary);color:#fff;}
+  .btn-outline{background:transparent;color:var(--ink);border:1.5px solid var(--ink);}
+  .btn-outline-light{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.7);}
+
+  /* Header */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(251,246,236,.92);backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:18px 0;}
+  .logo{font-family:'Lora',serif;font-weight:700;font-size:20px;}
+  .logo span{color:var(--primary);}
+  .nav-links{display:flex;gap:28px;font-size:14.5px;font-weight:500;}
+  .nav-links a:hover{color:var(--primary);}
+  .nav-cta{display:flex;align-items:center;gap:18px;}
+  @media (max-width:820px){ .nav-links{display:none;} }
+
+  /* Hero */
+  .hero{position:relative;min-height:92vh;display:flex;align-items:flex-end;color:#fff;}
+  .hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(.15) brightness(.62);}
+  .hero::after{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg, rgba(20,15,10,.15) 0%, rgba(20,15,10,.25) 45%, rgba(20,15,10,.86) 100%);
+  }
+  .hero-content{position:relative;z-index:2;padding:80px 0 72px;}
+  .hero h1{font-size:clamp(34px,5.4vw,58px);line-height:1.12;max-width:760px;font-weight:700;}
+  .hero h1 em{color:var(--gold);font-style:italic;}
+  .hero p{max-width:560px;margin-top:18px;font-size:17px;color:rgba(255,255,255,.88);}
+  .hero-actions{margin-top:32px;display:flex;gap:14px;flex-wrap:wrap;}
+  .hero-verse{
+    position:relative;z-index:2;margin-top:46px;padding-top:22px;border-top:1px solid rgba(255,255,255,.25);
+    max-width:560px;font-family:'Lora',serif;font-style:italic;font-size:15px;color:rgba(255,255,255,.75);
+  }
+
+  section{padding:96px 0;}
+  .section-head{max-width:640px;margin-bottom:48px;}
+  .section-head h2{font-size:clamp(26px,3.4vw,36px);font-weight:600;line-height:1.2;}
+  .section-head p{margin-top:14px;color:var(--muted);font-size:16px;}
+
+  /* Quienes somos */
+  .mission{background:var(--white);}
+  .mission-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;}
+  .mission-grid p{color:var(--muted);margin-bottom:16px;font-size:16px;}
+  .founder{
+    margin-top:28px;padding:20px 22px;background:var(--paper-alt);border-left:3px solid var(--primary);
+    border-radius:4px;
+  }
+  .founder strong{font-family:'Lora',serif;font-size:16px;}
+  .founder span{display:block;color:var(--muted);font-size:13.5px;margin-top:2px;}
+  .mission-photo{border-radius:10px;overflow:hidden;box-shadow:0 24px 48px -20px rgba(43,36,32,.35);}
+  @media (max-width:860px){ .mission-grid{grid-template-columns:1fr;gap:36px;} }
+
+  /* Localidades */
+  .localidades{background:var(--paper-alt);}
+  .loc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;}
+  .loc-card{
+    position:relative;border-radius:12px;overflow:hidden;aspect-ratio:4/5;
+    box-shadow:0 16px 30px -18px rgba(43,36,32,.4);
+  }
+  .loc-card img{width:100%;height:100%;object-fit:cover;filter:brightness(.85);transition:transform .4s ease;}
+  .loc-card:hover img{transform:scale(1.05);}
+  .loc-card::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg, transparent 40%, rgba(20,15,10,.82) 100%);}
+  .loc-label{position:absolute;left:18px;bottom:16px;z-index:2;color:#fff;}
+  .loc-label .tag{font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);font-weight:600;}
+  .loc-label h3{font-size:20px;margin-top:4px;}
+  @media (max-width:860px){ .loc-grid{grid-template-columns:repeat(2,1fr);} }
+  @media (max-width:560px){ .loc-grid{grid-template-columns:1fr;} }
+
+  /* Galeria */
+  .galeria{background:var(--white);}
+  .gal-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+  .gal-grid img{width:100%;height:210px;object-fit:cover;border-radius:8px;}
+  @media (max-width:860px){ .gal-grid{grid-template-columns:repeat(2,1fr);} }
+
+  /* Ayudar */
+  .ayudar{background:var(--ink);color:#fff;}
+  .ayudar .section-head p{color:rgba(255,255,255,.72);}
+  .ayudar .eyebrow{color:var(--gold);}
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  .card{
+    background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);
+    border-radius:14px;padding:30px 26px;
+  }
+  .card .num{font-family:'Lora',serif;font-style:italic;color:var(--gold);font-size:15px;}
+  .card h3{margin-top:14px;font-size:19px;}
+  .card p{margin-top:10px;color:rgba(255,255,255,.68);font-size:14.5px;}
+  @media (max-width:860px){ .cards{grid-template-columns:1fr;} }
+
+  /* Contacto / Footer */
+  footer{background:var(--paper-alt);border-top:1px solid var(--line);padding:64px 0 32px;}
+  .foot-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:40px;margin-bottom:48px;}
+  .foot-grid h4{font-size:14px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:16px;}
+  .foot-grid p, .foot-grid a{font-size:15px;color:var(--ink);}
+  .foot-grid .row{margin-bottom:10px;display:block;}
+  .foot-bottom{
+    padding-top:24px;border-top:1px solid var(--line);
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
+    font-size:13px;color:var(--muted);
+  }
+  @media (max-width:820px){ .foot-grid{grid-template-columns:1fr;} }
+
+  .badge-draft{
+    position:fixed;bottom:18px;right:18px;z-index:99;
+    background:var(--ink);color:#fff;font-size:12.5px;font-weight:600;
+    padding:9px 16px;border-radius:30px;box-shadow:0 10px 24px -8px rgba(0,0,0,.4);
+    display:flex;align-items:center;gap:8px;
+  }
+  .badge-draft .dot{width:7px;height:7px;border-radius:50%;background:var(--gold);}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container nav">
+    <div class="logo">Madrinas <span>Por La Vida</span></div>
+    <nav class="nav-links">
+      <a href="#somos">Quiénes somos</a>
+      <a href="#localidades">Localidades</a>
+      <a href="#galeria">Galería</a>
+      <a href="#ayudar">Cómo ayudar</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="#ayudar" class="btn btn-primary" style="padding:11px 22px;font-size:14px;">Quiero ayudar</a>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <img src="https://images.squarespace-cdn.com/content/v1/5b58e6d7a2772c975945ec1a/1534148789393-TCU6CLM454JXTOT22SDG/85f52626-b958-4043-9554-f8a73f18a7c1.JPG" alt="Actividad de Madrinas Por La Vida en Malvín">
+  <div class="container hero-content">
+    <span class="eyebrow" style="color:var(--gold)">ONG · Uruguay</span>
+    <h1>Luchamos por la vida de los niños <em>por nacer</em>, acompañando a madres en situación vulnerable.</h1>
+    <p>Apoyo, contención y asesoramiento a mujeres embarazadas jóvenes en riesgo de aborto, en distintas localidades de Uruguay.</p>
+    <div class="hero-actions">
+      <a href="#ayudar" class="btn btn-primary">Quiero ayudar</a>
+      <a href="#somos" class="btn btn-outline-light">Conocer nuestra misión</a>
+    </div>
+    <p class="hero-verse">"Antes de formarte en el vientre, te elegí; antes de que salieras del seno materno, te consagré." — Jeremías 1,5</p>
+  </div>
+</section>
+
+<section class="mission" id="somos">
+  <div class="container mission-grid">
+    <div>
+      <span class="eyebrow">Quiénes somos</span>
+      <h2 style="font-size:32px;font-weight:600;margin-bottom:20px;">Una red de apoyo que nace del amor desinteresado</h2>
+      <p>Madrinas por la Vida es una ONG católica que nació a los pies de la Virgen de Guadalupe, en México, cuando nuestra fundadora asistió al "Llamado Guadalupano" junto a su esposo. Allí nació el compromiso de luchar por la vida de los niños por nacer, ayudando a madres muy jóvenes en riesgo de aborto y en situación de extrema vulnerabilidad social.</p>
+      <p>Nos proponemos ayudar a salvar la vida de los niños no nacidos y desestimular el aborto, atender las necesidades afectivas y materiales de las jóvenes embarazadas, y enseñar a las madres habilidades y destrezas que les sirvan para trabajar y afrontar la vida con dignidad.</p>
+      <p>Trabajamos voluntariamente, con el amor desinteresado de las madrinas que ayudan y el amor humilde de aquellas que se dejan ayudar.</p>
+      <div class="founder">
+        <strong>Marta Grego</strong>
+        <span>Fundadora y directora</span>
+      </div>
+    </div>
+    <div class="mission-photo">
+      <img src="https://images.squarespace-cdn.com/content/v1/5b58e6d7a2772c975945ec1a/1534149654885-U3EGT7BP1P8O0IG40M8H/62b0cdc8-a970-4dfb-9673-048e0cd095c8.JPG" alt="Madres y madrinas de la organización">
+    </div>
+  </div>
+</section>
+
+<section class="localidades" id="localidades">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Dónde estamos</span>
+      <h2>Apoyamos a madres en distintas localidades de Uruguay</h2>
+      <p>Cada centro funciona como un espacio de contención, formación y acompañamiento cercano a la comunidad.</p>
+    </div>
+    <div class="loc-grid">
+      <div class="loc-card">
+        <img src="https://images.squarespace-cdn.com/content/v1/5b58e6d7a2772c975945ec1a/1534148789393-TCU6CLM454JXTOT22SDG/85f52626-b958-4043-9554-f8a73f18a7c1.JPG" alt="Centro de Malvín">
+        <div class="loc-label"><span class="tag">Montevideo</span><h3>Malvín</h3></div>
+      </div>
+      <div class="loc-card">
+        <img src="https://images.squarespace-cdn.com/content/v1/5b58e6d7a2772c975945ec1a/1534149574510-Z5J9I3WPFIDDSYZIZ6KV/837a187f-6dbc-4c1c-8426-2574d39de934.JPG" alt="Centro de Aeroparque">
+        <div class="loc-label"><span class="tag">Canelones</span><h3>Aeroparque</h3></div>
+      </div>
+      <div class="loc-card">
+        <img src="https://images.squarespace-cdn.com/content/v1/5b58e6d7a2772c975945ec1a/1534583406787-A541D41Z2NIM2CE354C4/WhatsApp+Image+2018-08-17+at+18.47.31.jpeg" alt="Centro de Artigas">
+        <div class="loc-label"><span class="tag">Frontera norte</span><h3>Artigas</h3></div>
+      </div>
+      <div class="loc-card">
+        <img src="https://images.squarespace-cdn.com/content/v1/5b58e6d7a2772c975945ec1a/adf25ecf-9f76-4937-9bc1-09f2110919ff/236786235_102359135490563_8200797334450980999_n.jpg" alt="Centro de Sauce">
+        <div class="loc-label"><span class="tag">Canelones</span><h3>Sauce</h3></div>
+      </div>
+      <div class="loc-card">
+        <img src="https://images.squarespace-cdn.com/content/v1/5b58e6d7a2772c975945ec1a/1562607213451-KOT321H30Q6LU8LBJKT2/GABIRELITA20190701.jpg" alt="Centro en Colombia">
+        <div class="loc-label"><span class="tag">Internacional</span><h3>Colombia</h3></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="galeria" id="galeria">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Galería</span>
+      <h2>Momentos de nuestra comunidad</h2>
+      <p>Encuentros, talleres y actividades junto a las madres y madrinas.</p>
+    </div>
+    <div class="gal-grid">
+      <img src="https://images.squarespace-cdn.com/content/v1/5b58e6d7a2772c975945ec1a/1540276897078-19UQ4N3WTCTRQPSFBL5M/2.jpg" alt="Actividad comunitaria">
+      <img src="https://images.squarespace-cdn.com/content/v1/5b58e6d7a2772c975945ec1a/1540276904916-G29JJYG9916AQ6FBD43R/11.jpg" alt="Actividad comunitaria">
+      <img src="https://images.squarespace-cdn.com/content/v1/5b58e6d7a2772c975945ec1a/1540276901851-IHQRDPEXTCJYF02G5TMK/7.jpg" alt="Actividad comunitaria">
+      <img src="https://images.squarespace-cdn.com/content/v1/5b58e6d7a2772c975945ec1a/1540276921908-HLW59F7EMMMP790DAZPC/1.jpg" alt="Actividad comunitaria">
+      <img src="https://images.squarespace-cdn.com/content/v1/5b58e6d7a2772c975945ec1a/1671389407169-Y1TCLC999HTVLD9C4N20/WhatsApp+Image+2022-12-18+at+15.35.34+%281%29.jpeg" alt="Curso de cocina 2022">
+      <img src="https://images.squarespace-cdn.com/content/v1/5b58e6d7a2772c975945ec1a/1660494662448-21Q97W1H91TB8GLNHAI6/WhatsApp+Image+2022-08-14+at+1.21.28+PM+%287%29.jpeg" alt="Día del niño 2022">
+      <img src="https://images.squarespace-cdn.com/content/v1/5b58e6d7a2772c975945ec1a/1667780288601-6N0947M05JB66W016PQ1/WhatsApp+Image+2022-11-06+at+8.24.19+AM+%281%29.jpeg" alt="Encuentro en Artigas">
+      <img src="https://images.squarespace-cdn.com/content/v1/5b58e6d7a2772c975945ec1a/1705445693618-JQBX73K3BGAYAUN6JNVJ/WhatsApp+Image+2024-01-15+at+08.47.22.jpeg" alt="Cierre de año 2023">
+    </div>
+  </div>
+</section>
+
+<section class="ayudar" id="ayudar">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Cómo ayudar</span>
+      <h2>Sumate a la causa</h2>
+      <p>Hay distintas formas de acompañar a las madres y sostener el trabajo de la organización.</p>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <span class="num">01</span>
+        <h3>Ser madrina</h3>
+        <p>Acompañá de cerca a una madre joven en su proceso, con contención afectiva y presencia constante.</p>
+      </div>
+      <div class="card">
+        <span class="num">02</span>
+        <h3>Donar</h3>
+        <p>Colaborá con dinero o con artículos para las madres y sus bebés: ropa, alimentos, elementos de higiene.</p>
+      </div>
+      <div class="card">
+        <span class="num">03</span>
+        <h3>Ser voluntaria/o</h3>
+        <p>Sumá tu tiempo y tus habilidades a los talleres, encuentros y tareas de la organización.</p>
+      </div>
+    </div>
+    <div style="margin-top:38px;">
+      <a href="#contacto" class="btn btn-primary">Quiero colaborar</a>
+    </div>
+  </div>
+</section>
+
+<footer id="contacto">
+  <div class="container">
+    <div class="foot-grid">
+      <div>
+        <h4>Madrinas Por La Vida</h4>
+        <p style="color:var(--muted);max-width:320px;">Apoyo y contención a la mujer embarazada. Uruguay.</p>
+      </div>
+      <div>
+        <h4>Contacto</h4>
+        <a class="row" href="tel:+59899927132">099 927 132</a>
+        <a class="row" href="https://www.instagram.com/madrinasporlavida/" target="_blank" rel="noopener">Instagram @madrinasporlavida</a>
+      </div>
+      <div>
+        <h4>Navegación</h4>
+        <a class="row" href="#somos">Quiénes somos</a>
+        <a class="row" href="#localidades">Localidades</a>
+        <a class="row" href="#ayudar">Cómo ayudar</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Madrinas Por La Vida — Uruguay</span>
+      <span>Sitio en reconstrucción — borrador preparado por Renueva Smart</span>
+    </div>
+  </div>
+</footer>
+
+<div class="badge-draft"><span class="dot"></span> Borrador — no publicado</div>
+
+</body>
+</html>
