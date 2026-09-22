@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Oraciones — Madrinas Por La Vida</title>
+<meta name="description" content="Oración por el Niño por Nacer y Rosario por la Vida — Madrinas Por La Vida, ONG católica de apoyo a mujeres embarazadas en Uruguay.">
+<meta name="robots" content="noindex, follow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,500&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1E1B16;
+    --paper:#F9F7F3;
+    --paper-alt:#E8E2D1;
+    --primary:#B2985F;
+    --primary-dark:#765E32;
+    --gold:#CBBE8B;
+    --muted:#6B6156;
+    --line:#E2DFD7;
+    --white:#FFFFFF;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Work Sans', sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    line-height:1.6;
+  }
+  h1,h2,h3,.serif{font-family:'Lora', serif;}
+  a{color:inherit;text-decoration:none;}
+  .container{max-width:760px;margin:0 auto;padding:0 24px;}
+  .eyebrow{
+    font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--primary);margin-bottom:10px;display:block;
+  }
+
+  header{
+    background:var(--white);border-bottom:1px solid var(--line);
+    padding-top:18px;padding-bottom:18px;
+  }
+  .back-link{
+    display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:var(--primary-dark);
+  }
+  .back-link svg{width:16px;height:16px;}
+  .logo{font-family:'Lora',serif;font-weight:700;font-size:18px;margin-top:4px;}
+  .logo span{color:var(--primary);}
+
+  .page-head{padding:64px 0 12px;text-align:center;}
+  .page-head h1{font-size:clamp(28px,4vw,40px);margin-bottom:14px;}
+  .page-head p{color:var(--muted);font-size:16px;max-width:560px;margin:0 auto;}
+
+  section{padding:56px 0;}
+
+  /* Oración por el Niño por Nacer */
+  .oracion-card{
+    text-align:center;background:var(--paper-alt);
+    border-radius:20px;padding:56px 40px;border-top:3px solid var(--primary);
+  }
+  .oracion-title{font-size:clamp(22px,3vw,28px);font-weight:600;margin:12px 0 30px;}
+  .oracion-text{
+    font-family:'Lora',serif;font-style:italic;font-size:17.5px;line-height:2;
+    color:var(--ink);text-align:center;
+  }
+  .oracion-amen{
+    display:block;margin-top:20px;font-style:normal;font-weight:700;
+    letter-spacing:.04em;color:var(--primary-dark);
+  }
+  @media (max-width:600px){ .oracion-card{padding:40px 24px;} .oracion-text{font-size:16px;} }
+
+  /* Rosario */
+  .rosario-intro{text-align:center;margin-bottom:44px;}
+  .rosario-intro h2{font-size:clamp(24px,3.4vw,32px);margin-bottom:14px;}
+  .rosario-intro p{color:var(--muted);font-size:16px;}
+
+  .rosario-intenciones{margin-bottom:48px;}
+  .rosario-intenciones h3, .rosario-pasos h3{font-size:19px;margin-bottom:18px;}
+  .rosario-intenciones ol{padding-left:22px;}
+  .rosario-intenciones li{margin-bottom:14px;color:var(--ink);line-height:1.7;}
+  .rosario-intenciones li strong{color:var(--primary-dark);}
+
+  .paso{background:var(--white);border:1px solid var(--line);border-radius:12px;margin-bottom:12px;padding:0 22px;}
+  .paso summary{
+    cursor:pointer;padding:16px 0;font-weight:600;font-family:'Lora',serif;font-size:16px;
+    list-style:none;display:flex;align-items:center;justify-content:space-between;gap:16px;
+  }
+  .paso summary::-webkit-details-marker{display:none;}
+  .paso summary::after{content:"+";font-size:22px;color:var(--primary);font-weight:400;flex-shrink:0;}
+  .paso[open] summary::after{content:"–";}
+  .paso-body{padding-bottom:22px;color:var(--ink);line-height:1.8;font-size:15px;}
+  .paso-body p{margin-bottom:14px;}
+  .paso-body strong{display:block;margin-bottom:6px;color:var(--primary-dark);font-family:'Lora',serif;}
+
+  .rosario-fuente{text-align:center;margin-top:32px;font-size:13px;color:var(--muted);}
+  .rosario-fuente a{color:var(--primary-dark);font-weight:600;}
+
+  footer{background:var(--paper-alt);border-top:1px solid var(--line);padding:40px 0;text-align:center;}
+  footer p{font-size:13px;color:var(--muted);}
+  footer a{color:var(--primary-dark);font-weight:600;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <a href="../" class="back-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      Volver a Madrinas Por La Vida
+    </a>
+    <div class="logo">Madrinas <span>Por La Vida</span></div>
+  </div>
+</header>
+
+<div class="page-head">
+  <div class="container">
+    <span class="eyebrow">Vida de oración</span>
+    <h1>Oraciones por la Vida</h1>
+    <p>Dos oraciones para acompañar en la fe la lucha por la vida de los niños por nacer y de las madres en situación vulnerable.</p>
+  </div>
+</div>
+
+<section class="oracion" id="oracion">
+  <div class="container">
+    <div class="oracion-card">
+      <span class="eyebrow">Oración</span>
+      <h2 class="oracion-title">Oración por el Niño por Nacer</h2>
+      <p class="oracion-text">
+        Señor de la vida,<br>
+        Tú que formaste mi ser en el seno materno,<br>
+        te pido que protejas a cada niño por nacer.<br>
+        Dales fuerza a sus madres para acogerlos con amor,<br>
+        y fe a sus padres para guiarlos en tu camino.<br>
+        Que cada vida sea vista como un regalo,<br>
+        un reflejo de tu amor y tu voluntad.<br>
+        Cuida a los más pequeños e indefensos,<br>
+        y despierta en todos el respeto por la vida.<br>
+        María, Madre de la Vida,<br>
+        intercede por cada niño aún no nacido,<br>
+        para que puedan ver la luz del día<br>
+        y crecer bajo la bendición de Dios.
+        <span class="oracion-amen">Amén.</span>
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="rosario" id="rosario">
+  <div class="container">
+    <div class="rosario-intro">
+      <span class="eyebrow">Oración</span>
+      <h2>Rosario por la Vida</h2>
+      <p>Se reza siguiendo el esquema común de cualquier rosario; la diferencia está en que existe una intención particular para añadir a cada Misterio de tu Rosario diario.</p>
+    </div>
+
+    <div class="rosario-intenciones">
+      <h3>Intenciones para cada Misterio</h3>
+      <ol>
+        <li><strong>Misterio 1.</strong> María: Ruega por las mujeres embarazadas. Que comprendan que ese ser que crece en su interior no es parte de su cuerpo, ni células descartables, ni una carga, sino un hijo, un ser humano en desarrollo, con derecho a disfrutar la vida que Dios le da.</li>
+        <li><strong>Misterio 2.</strong> María: Ruega para que las embarazadas resistan la presión, sea social o familiar, de quienes las quieren convencer de abortar.</li>
+        <li><strong>Misterio 3.</strong> María: Por tu medio ofrecemos a Dios este Misterio en reparación por los millones de abortos realizados en el mundo y por la conversión de quienes han convertido el aborto en lucrativo negocio.</li>
+        <li><strong>Misterio 4.</strong> María: Ruega por los afectados por el aborto. Las mujeres, que siempre quedan con grave daño físico y espiritual; hallen en Dios perdón y paz. Y a sus parejas y parientes que sufren el duelo de su ser amado abortado, dales consuelo.</li>
+        <li><strong>Misterio 5.</strong> María: Ruega por los provida: en especial por los que legislan a favor de la vida; los que oran afuera de abortorios, y los médicos y enfermeras que se niegan a realizar abortos aunque los despidan. Protégelos y ayúdalos para que su esfuerzo rinda abundante fruto.</li>
+      </ol>
+    </div>
+
+    <div class="rosario-pasos">
+      <h3>Cómo rezar el Rosario, paso a paso</h3>
+
+      <details class="paso">
+        <summary>1. Nos persignamos</summary>
+        <div class="paso-body">
+          <p>Por la señal de la santa Cruz, de nuestros enemigos, líbranos, Señor, Dios nuestro. En el nombre del Padre y del Hijo y del Espíritu Santo.</p>
+        </div>
+      </details>
+
+      <details class="paso">
+        <summary>2. Oración del Yo Pecador</summary>
+        <div class="paso-body">
+          <p>Yo confieso ante Dios Todopoderoso, y ante ustedes hermanos que he pecado mucho de pensamiento, palabra, obra y omisión. Por mi culpa, por mi culpa, por mi gran culpa. Por eso ruego a Santa María siempre Virgen, a los ángeles, a los santos y a ustedes hermanos, que intercedan por mí ante Dios, Nuestro Señor. Amén.</p>
+        </div>
+      </details>
+
+      <details class="paso">
+        <summary>3. Gloria al Padre</summary>
+        <div class="paso-body">
+          <p>Gloria al Padre y al Hijo y al Espíritu Santo. Como era en el principio, ahora y siempre, por los siglos de los siglos. Amén.</p>
+        </div>
+      </details>
+
+      <details class="paso">
+        <summary>4. Por cada uno de los cinco Misterios</summary>
+        <div class="paso-body">
+          <p>Para cada Misterio: se pronuncia el misterio según el día y se lee la intención correspondiente de la lista de arriba. Tomá un minuto para reflexionar, relacionala con la realidad y dialogá sobre ello con Jesús y con María. Después:</p>
+          <p><strong>Un Padre Nuestro</strong>Padre Nuestro, que estás en el Cielo, santificado sea Tu nombre, venga a nosotros Tu reino, hágase tu voluntad, en la tierra como en el cielo. Danos hoy nuestro pan de cada día, perdona nuestras ofensas, como también nosotros perdonamos a los que nos ofenden. No nos dejes caer en la tentación, y líbranos del mal. Amén.</p>
+          <p><strong>10 Avemarías</strong>Dios te Salve, María, llena eres de gracia, el Señor es contigo. Bendita tú eres entre todas las mujeres y bendito es el fruto de tu vientre, Jesús. Santa María, Madre de Dios, ruega por nosotros pecadores, ahora y en la hora de nuestra muerte. Amén. (Se repite 10 veces).</p>
+          <p><strong>Un Gloria al Padre</strong>Gloria al Padre y al Hijo y al Espíritu Santo. Como era en el principio ahora y siempre, por los siglos de los siglos. Amén.</p>
+          <p><strong>Jaculatoria</strong>Santa María de Guadalupe, Madre del verdadero Dios por quien se vive, ruega por los concebidos no nacidos.</p>
+          <p>Repetí este mismo esquema para los cinco Misterios, cambiando la intención según la lista de arriba.</p>
+        </div>
+      </details>
+
+      <details class="paso">
+        <summary>5. Tres Avemarías finales</summary>
+        <div class="paso-body">
+          <p>Dios te salve, María Santísima, Hija de Dios Padre, Virgen Purísima antes del parto, en tus manos ponemos nuestra fe para que la ilumines. Llena eres de gracia, el Señor está contigo. Bendita tú eres entre todas las mujeres y bendito es el fruto de tu vientre, Jesús. Santa María, Madre de Dios, ruega por nosotros pecadores, ahora y en la hora de nuestra muerte. Amén.</p>
+          <p>Dios te salve, María Santísima, Madre de Dios Hijo, Virgen Purísima en el parto, en tus manos ponemos nuestra esperanza para que la alientes. Llena eres de gracia… Santa María, Madre de Dios, ruega por nosotros pecadores, ahora y en la hora de nuestra muerte. Amén.</p>
+          <p>Dios te salve, María Santísima, esposa de Dios Espíritu Santo, Virgen Purísima después del parto, en tus manos ponemos nuestra caridad para que la inflames. Llena eres de gracia… Santa María, Madre de Dios, ruega por nosotros pecadores, ahora y en la hora de nuestra muerte. Amén.</p>
+          <p>Dios te salve, María Santísima, Templo y Sagrario de la Santísima Trinidad, Virgen concebida sin la culpa original.</p>
+        </div>
+      </details>
+
+      <details class="paso">
+        <summary>6. La Salve</summary>
+        <div class="paso-body">
+          <p>Dios te salve, Reina y Madre de misericordia, vida, dulzura y esperanza nuestra; Dios te salve. A ti llamamos los desterrados hijos de Eva; a ti suspiramos, gimiendo y llorando en este valle de lágrimas. Ea, pues, Señora, abogada nuestra, vuelve a nosotros esos tus ojos misericordiosos; y después de este destierro, muéstranos a Jesús, fruto bendito de tu vientre. ¡Oh, clemente, oh piadosa, oh dulce Virgen María! Ruega por nosotros, Santa Madre de Dios, para que seamos dignos de alcanzar las promesas de Nuestro Señor Jesucristo. Amén.</p>
+        </div>
+      </details>
+
+      <details class="paso">
+        <summary>7. Letanías Lauretanas</summary>
+        <div class="paso-body">
+          <p>Para cerrar el Rosario se rezan las Letanías Lauretanas completas — <a href="https://desdelafe.mx/noticias/sabias-que/letania-completa-actualizada-rosario/" target="_blank" rel="noopener" style="color:var(--primary-dark);font-weight:600;">podés encontrarlas acá</a>.</p>
+        </div>
+      </details>
+    </div>
+
+    <p class="rosario-fuente">Fuente: <a href="https://desdelafe.mx/rosarios/rosario-por-la-vida-como-se-reza/" target="_blank" rel="noopener">desdelafe.mx</a></p>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p><a href="../">← Volver al sitio de Madrinas Por La Vida</a></p>
+  </div>
+</footer>
+
+</body>
+</html>
