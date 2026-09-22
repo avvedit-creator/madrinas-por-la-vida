@@ -184,6 +184,24 @@
   .mission-photo{border-radius:10px;overflow:hidden;box-shadow:0 24px 48px -20px rgba(43,36,32,.35);}
   @media (max-width:860px){ .mission-grid{grid-template-columns:1fr;gap:36px;} }
 
+  /* Oración */
+  .oracion{background:var(--white);}
+  .oracion-card{
+    max-width:680px;margin:0 auto;text-align:center;background:var(--paper-alt);
+    border-radius:20px;padding:56px 40px;border-top:3px solid var(--primary);
+  }
+  .oracion-card .eyebrow{display:block;}
+  .oracion-title{font-size:clamp(24px,3vw,30px);font-weight:600;margin:12px 0 30px;}
+  .oracion-text{
+    font-family:'Lora',serif;font-style:italic;font-size:17.5px;line-height:2;
+    color:var(--ink);text-align:center;
+  }
+  .oracion-amen{
+    display:block;margin-top:20px;font-style:normal;font-weight:700;
+    letter-spacing:.04em;color:var(--primary-dark);
+  }
+  @media (max-width:600px){ .oracion-card{padding:40px 24px;} .oracion-text{font-size:16px;} }
+
   /* Localidades */
   .localidades{background:var(--paper-alt);}
   .loc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;}
@@ -250,6 +268,7 @@
     <nav class="nav-links">
       <a href="#contacto">Necesito ayuda</a>
       <a href="#somos">Quiénes somos</a>
+      <a href="#oracion">Oración</a>
       <a href="#localidades">Localidades</a>
       <a href="#galeria">Galería</a>
       <a href="#ayudar">Cómo ayudar</a>
@@ -346,6 +365,31 @@
     </div>
     <div class="mission-photo">
       <img src="https://images.squarespace-cdn.com/content/v1/5b58e6d7a2772c975945ec1a/1534149654885-U3EGT7BP1P8O0IG40M8H/62b0cdc8-a970-4dfb-9673-048e0cd095c8.JPG" alt="Madres y madrinas de la organización">
+    </div>
+  </div>
+</section>
+
+<section class="oracion" id="oracion">
+  <div class="container">
+    <div class="oracion-card">
+      <span class="eyebrow">Oración</span>
+      <h2 class="oracion-title">Oración por el Niño por Nacer</h2>
+      <p class="oracion-text">
+        Señor de la vida,<br>
+        Tú que formaste mi ser en el seno materno,<br>
+        te pido que protejas a cada niño por nacer.<br>
+        Dales fuerza a sus madres para acogerlos con amor,<br>
+        y fe a sus padres para guiarlos en tu camino.<br>
+        Que cada vida sea vista como un regalo,<br>
+        un reflejo de tu amor y tu voluntad.<br>
+        Cuida a los más pequeños e indefensos,<br>
+        y despierta en todos el respeto por la vida.<br>
+        María, Madre de la Vida,<br>
+        intercede por cada niño aún no nacido,<br>
+        para que puedan ver la luz del día<br>
+        y crecer bajo la bendición de Dios.
+        <span class="oracion-amen">Amén.</span>
+      </p>
     </div>
   </div>
 </section>
@@ -451,6 +495,7 @@
         <h4>Navegación</h4>
         <a class="row" href="#contacto">Necesito ayuda</a>
         <a class="row" href="#somos">Quiénes somos</a>
+        <a class="row" href="#oracion">Oración</a>
         <a class="row" href="#localidades">Localidades</a>
         <a class="row" href="#ayudar">Cómo ayudar</a>
       </div>
