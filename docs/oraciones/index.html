@@ -89,7 +89,16 @@
   section{padding:56px 0;}
 
   /* Oración por el Niño por Nacer */
+  .oracion-layout{display:flex;align-items:center;justify-content:center;gap:44px;}
+  .oracion-art{flex:0 0 260px;max-width:260px;}
+  .oracion-art img{
+    width:100%;height:auto;display:block;
+    -webkit-mask-image:radial-gradient(ellipse 62% 58% at center, #000 55%, transparent 88%);
+    mask-image:radial-gradient(ellipse 62% 58% at center, #000 55%, transparent 88%);
+  }
+  @media (max-width:900px){ .oracion-art{display:none;} }
   .oracion-card{
+    flex:1 1 620px;max-width:620px;
     text-align:center;background:var(--paper-alt);
     border-radius:20px;padding:56px 40px;border-top:3px solid var(--primary);
   }
@@ -191,7 +200,8 @@
 </div>
 
 <section class="oracion" id="oracion">
-  <div class="container-narrow">
+  <div class="container">
+    <div class="oracion-layout">
     <div class="oracion-card">
       <span class="eyebrow">Oración</span>
       <h2 class="oracion-title">Oración por el Niño por Nacer</h2>
@@ -211,6 +221,10 @@
         y crecer bajo la bendición de Dios.
         <span class="oracion-amen">Amén.</span>
       </p>
+    </div>
+    <div class="oracion-art">
+      <img src="../assets/virgen-carmen.jpg" alt="Virgen del Carmen" loading="lazy">
+    </div>
     </div>
   </div>
 </section>
