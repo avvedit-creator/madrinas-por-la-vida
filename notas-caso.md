@@ -72,7 +72,7 @@ Páginas reales según el sitemap: `/`, `/nuestramision`, `/madrinas`, `/contact
   con identidad de marca de Renueva Smart.
 - `generar_pdf.py` — script Python (reportlab) que genera el PDF de arriba. Reutilizable
   para otros casos, ajustando el contenido de `secciones`.
-- `borrador-web/index.html` — borrador funcional de la nueva web (una sola página),
+- `docs/index.html` — borrador funcional de la nueva web (una sola página),
   con contenido real recuperado (misión, localidades, fotos originales vía CDN de
   Squarespace) e **identidad visual nueva y propia** (no la de Renueva Smart): terracota
   `#C1523A` + crema `#FBF6EC` + tinta `#2B2420`, tipografías Lora (títulos) y Work Sans
@@ -86,7 +86,7 @@ Páginas reales según el sitemap: `/`, `/nuestramision`, `/madrinas`, `/contact
 - [ ] Definir quién gestionará la compra/renovación del dominio.
 - [ ] Conseguir permiso por escrito antes de tocar dominio/hosting reales (formulario
       de autorización de Renueva Smart).
-- [ ] Mostrarles `borrador-web/index.html` y ajustar según feedback (contenido,
+- [ ] Mostrarles `docs/index.html` y ajustar según feedback (contenido,
       identidad visual, secciones que falten: testimonios completos, noticias, donar).
 - [ ] Si dan el visto bueno, descargar las fotos del CDN de Squarespace y alojarlas en
       el hosting definitivo (no depender de `images.squarespace-cdn.com` a largo plazo).
