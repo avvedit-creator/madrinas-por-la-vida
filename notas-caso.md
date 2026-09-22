@@ -72,11 +72,24 @@ Páginas reales según el sitemap: `/`, `/nuestramision`, `/madrinas`, `/contact
   con identidad de marca de Renueva Smart.
 - `generar_pdf.py` — script Python (reportlab) que genera el PDF de arriba. Reutilizable
   para otros casos, ajustando el contenido de `secciones`.
-- `docs/index.html` — borrador funcional de la nueva web (una sola página),
-  con contenido real recuperado (misión, localidades, fotos originales vía CDN de
-  Squarespace) e **identidad visual nueva y propia** (no la de Renueva Smart): terracota
-  `#C1523A` + crema `#FBF6EC` + tinta `#2B2420`, tipografías Lora (títulos) y Work Sans
-  (cuerpo), ambas de Google Fonts. Pensado para mostrar en la llamada o ajustar después.
+- `docs/index.html` — borrador funcional de la nueva web (una sola página), publicado en
+  GitHub Pages: https://avvedit-creator.github.io/madrinas-por-la-vida/
+  Contenido real recuperado (misión, localidades, fotos originales vía CDN de Squarespace).
+  **Paleta de colores**: dorado/beige tomada de vatican.va (`#B2985F`, `#CBBE8B`, `#765E32`,
+  `#F9F7F3`, `#E8E2D1`), a pedido del cliente — no es la identidad original de la ONG (esa
+  no se pudo recuperar del Wayback Machine). Tipografías Lora (títulos) y Work Sans (cuerpo).
+  **Estructura orientada a contacto rápido** (prioridad: que una madre en situación
+  vulnerable pueda escribir lo antes posible):
+  - Botón de WhatsApp flotante, siempre visible, en toda la página.
+  - Sección "Contacto" ubicada justo debajo del hero (no al final, como estaba antes),
+    con acceso directo a WhatsApp, teléfono con "tocar para copiar" (con fallback si el
+    navegador no permite usar el portapapeles) y un formulario que arma el mensaje y lo
+    abre en WhatsApp (sin necesitar backend ni servicio externo).
+  - Los botones de "Necesito ayuda" y "Quiero colaborar" usan mensajes de WhatsApp
+    prellenados distintos, para que el equipo pueda distinguir de un vistazo si es una
+    consulta urgente o un ofrecimiento de ayuda/donación.
+  - Todavía no tenemos un **email de contacto real** de la organización — no se inventó
+    ninguno. Falta preguntarlo en la llamada.
   Las fotos están hotlinkeadas directo al CDN de Squarespace (siguen en línea); antes de
   publicar en serio conviene descargarlas y alojarlas en el hosting definitivo.
 
@@ -88,5 +101,6 @@ Páginas reales según el sitemap: `/`, `/nuestramision`, `/madrinas`, `/contact
       de autorización de Renueva Smart).
 - [ ] Mostrarles `docs/index.html` y ajustar según feedback (contenido,
       identidad visual, secciones que falten: testimonios completos, noticias, donar).
+- [ ] Conseguir el email de contacto oficial de la organización (aún no confirmado).
 - [ ] Si dan el visto bueno, descargar las fotos del CDN de Squarespace y alojarlas en
       el hosting definitivo (no depender de `images.squarespace-cdn.com` a largo plazo).
