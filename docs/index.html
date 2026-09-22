@@ -218,6 +218,15 @@
   .card .num{font-family:'Lora',serif;font-style:italic;color:var(--gold);font-size:15px;}
   .card h3{margin-top:14px;font-size:19px;}
   .card p{margin-top:10px;color:rgba(255,255,255,.68);font-size:14.5px;}
+  .card-account{
+    margin-top:14px;display:inline-flex;align-items:center;gap:8px;cursor:pointer;
+    padding:9px 12px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);
+    border-radius:8px;font-size:13.5px;color:#fff;
+  }
+  .card-account:hover{border-color:var(--gold);}
+  .card-account .copy-hint{font-size:11px;color:rgba(255,255,255,.55);}
+  .card-account.copiado{border-color:var(--gold);}
+  .card-account.copiado .copy-hint{color:var(--gold);font-weight:600;}
   @media (max-width:860px){ .cards{grid-template-columns:1fr;} }
 
   /* Contacto / Footer */
@@ -420,6 +429,11 @@
         <span class="num">02</span>
         <h3>Donar</h3>
         <p>Colaborá con dinero o con artículos para las madres y sus bebés: ropa, alimentos, elementos de higiene.</p>
+        <div class="card-account" data-copy="Banco Itaú CA 0020486" onclick="copiarValor(this)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" xmlns="http://www.w3.org/2000/svg" style="width:15px;height:15px;flex-shrink:0;"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M3 10h18M7 15h4"/></svg>
+          Banco Itaú — CA 0020486
+          <span class="copy-hint">Tocar para copiar</span>
+        </div>
       </div>
       <div class="card">
         <span class="num">03</span>
