@@ -104,7 +104,7 @@
 
   /* Hero */
   .hero{position:relative;min-height:92vh;display:flex;align-items:flex-end;color:#fff;}
-  .hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(.15) brightness(.62);}
+  .hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(.15) brightness(.62);}
   .hero::after{
     content:"";position:absolute;inset:0;
     background:linear-gradient(180deg, rgba(20,15,10,.15) 0%, rgba(20,15,10,.25) 45%, rgba(20,15,10,.86) 100%);
@@ -264,7 +264,9 @@
 </header>
 
 <section class="hero">
-  <img src="https://images.squarespace-cdn.com/content/v1/5b58e6d7a2772c975945ec1a/1534148789393-TCU6CLM454JXTOT22SDG/85f52626-b958-4043-9554-f8a73f18a7c1.JPG" alt="Actividad de Madrinas Por La Vida en Malvín">
+  <video id="hero-video" autoplay muted loop playsinline preload="auto" poster="assets/hero-poster.jpg" aria-hidden="true">
+    <source src="assets/hero-video.mp4" type="video/mp4">
+  </video>
   <div class="container hero-content">
     <span class="eyebrow" style="color:var(--gold)">ONG · Uruguay</span>
     <h1>Luchamos por la vida de los niños <em>por nacer</em>, acompañando a madres en situación vulnerable.</h1>
@@ -473,6 +475,14 @@
     var msg = a.getAttribute("data-msg") || "";
     a.href = "https://wa.me/" + WA_NUMERO + (msg ? "?text=" + encodeURIComponent(msg) : "");
   });
+
+  var heroVideo = document.getElementById("hero-video");
+  if (heroVideo) {
+    heroVideo.playbackRate = 0.75;
+    heroVideo.addEventListener("loadedmetadata", function () {
+      heroVideo.playbackRate = 0.75;
+    });
+  }
 
   function copiarValor(el) {
     var valor = el.getAttribute("data-copy");
