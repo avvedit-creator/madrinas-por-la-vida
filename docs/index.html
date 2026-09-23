@@ -241,44 +241,29 @@
 
   /* Galeria */
   .galeria{background:var(--white);}
-  .gal-carousels{display:grid;grid-template-columns:1fr 1fr;gap:28px;}
-  @media (max-width:760px){ .gal-carousels{grid-template-columns:1fr;gap:44px;} }
 
-  /* Carrusel de profundidad (reutilizable) */
-  .depth-carousel{
-    position:relative;width:100%;height:360px;margin:0 auto;
-    display:flex;align-items:center;justify-content:center;
-    perspective:var(--dc-perspective,1200px);perspective-origin:50% 50%;
+  /* Parallax Carousel (draggable, con desplazamiento interno de la imagen) */
+  .parallax-carousel{
+    position:relative;width:100%;height:480px;overflow:hidden;
     touch-action:pan-y;outline:none;user-select:none;-webkit-user-select:none;cursor:grab;
   }
-  .depth-carousel:active{cursor:grabbing;}
-  .depth-carousel:focus-visible{outline:2px solid rgba(178,152,95,.5);outline-offset:6px;border-radius:14px;}
-  .depth-carousel__stage{position:absolute;inset:0;transform-style:preserve-3d;}
-  .depth-carousel__card{
-    position:absolute;top:50%;left:50%;width:210px;height:270px;border-radius:14px;
-    transform-origin:center center;overflow:hidden;background:var(--ink);
-    box-shadow:0 24px 48px -20px rgba(20,15,10,.55),0 8px 20px -10px rgba(20,15,10,.4);
-    will-change:transform,opacity,filter;cursor:pointer;transform:translate(-50%,-50%);
+  .parallax-carousel:active{cursor:grabbing;}
+  .parallax-carousel:focus-visible{outline:2px solid rgba(178,152,95,.5);outline-offset:6px;border-radius:14px;}
+  .pc-slide{
+    position:absolute;top:50%;left:50%;width:320px;height:440px;border-radius:16px;
+    overflow:hidden;background:var(--ink);box-shadow:0 30px 60px -20px rgba(20,15,10,.5);
+    will-change:transform;
   }
-  .depth-carousel__img{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none;-webkit-user-drag:none;}
-  .depth-carousel__tint{position:absolute;inset:0;opacity:0;pointer-events:none;mix-blend-mode:multiply;background:#1E1B16;}
-  .depth-carousel__arrow{
-    position:absolute;top:50%;transform:translateY(-50%);z-index:3000;
-    width:38px;height:38px;display:grid;place-items:center;border:1px solid rgba(255,255,255,.2);
-    border-radius:999px;background:rgba(30,27,22,.55);backdrop-filter:blur(8px);color:#fff;
-    cursor:pointer;transition:background .2s ease,border-color .2s ease,transform .2s ease;
+  .pc-slide__img{
+    position:absolute;top:-8.82%;left:-8.82%;width:117.65%;height:117.65%;
+    background-size:cover;background-position:center;pointer-events:none;
+    will-change:transform;
   }
-  .depth-carousel__arrow:hover{background:rgba(30,27,22,.85);border-color:rgba(255,255,255,.4);}
-  .depth-carousel__arrow:active{transform:translateY(-50%) scale(.94);}
-  .depth-carousel__arrow--prev{left:2px;}
-  .depth-carousel__arrow--next{right:2px;}
-  .depth-carousel__dots{
-    position:absolute;bottom:8px;left:50%;transform:translateX(-50%);z-index:3000;
-    display:flex;gap:8px;padding:8px 12px;border-radius:999px;background:rgba(30,27,22,.35);backdrop-filter:blur(6px);
+  .pc-slide__dim{position:absolute;inset:0;background:#1E1B16;opacity:0;pointer-events:none;}
+  @media (max-width:640px){
+    .parallax-carousel{height:340px;}
+    .pc-slide{width:220px;height:300px;}
   }
-  .depth-carousel__dot{width:7px;height:7px;padding:0;border:none;border-radius:999px;background:rgba(255,255,255,.4);cursor:pointer;transition:width .25s ease,background .25s ease;}
-  .depth-carousel__dot.is-active{width:20px;background:var(--gold);}
-  @media (max-width:640px){ .depth-carousel{height:320px;} .depth-carousel__card{width:190px;height:245px;} }
 
   /* Ayudar */
   .ayudar{background:var(--ink);color:#fff;}
@@ -506,72 +491,15 @@
       <h2>Momentos de nuestra comunidad</h2>
       <p>Encuentros, talleres y actividades junto a las madres y madrinas.</p>
     </div>
-    <div class="gal-carousels">
-      <div class="depth-carousel" id="galCarousel1" tabindex="0" role="group" aria-roledescription="carrusel" aria-label="Galería de fotos, grupo 1">
-        <div class="depth-carousel__stage">
-          <div class="depth-carousel__card">
-            <img class="depth-carousel__img" src="https://images.squarespace-cdn.com/content/v1/5b58e6d7a2772c975945ec1a/1540276897078-19UQ4N3WTCTRQPSFBL5M/2.jpg" alt="Actividad comunitaria" draggable="false">
-            <span class="depth-carousel__tint"></span>
-          </div>
-          <div class="depth-carousel__card">
-            <img class="depth-carousel__img" src="https://images.squarespace-cdn.com/content/v1/5b58e6d7a2772c975945ec1a/1540276904916-G29JJYG9916AQ6FBD43R/11.jpg" alt="Actividad comunitaria" draggable="false">
-            <span class="depth-carousel__tint"></span>
-          </div>
-          <div class="depth-carousel__card">
-            <img class="depth-carousel__img" src="https://images.squarespace-cdn.com/content/v1/5b58e6d7a2772c975945ec1a/1540276901851-IHQRDPEXTCJYF02G5TMK/7.jpg" alt="Actividad comunitaria" draggable="false">
-            <span class="depth-carousel__tint"></span>
-          </div>
-          <div class="depth-carousel__card">
-            <img class="depth-carousel__img" src="https://images.squarespace-cdn.com/content/v1/5b58e6d7a2772c975945ec1a/1540276921908-HLW59F7EMMMP790DAZPC/1.jpg" alt="Actividad comunitaria" draggable="false">
-            <span class="depth-carousel__tint"></span>
-          </div>
-        </div>
-        <button type="button" class="depth-carousel__arrow depth-carousel__arrow--prev" aria-label="Foto anterior">
-          <svg viewBox="0 0 24 24" width="18" height="18"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-        <button type="button" class="depth-carousel__arrow depth-carousel__arrow--next" aria-label="Siguiente foto">
-          <svg viewBox="0 0 24 24" width="18" height="18"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-        <div class="depth-carousel__dots" role="tablist" aria-label="Fotos, grupo 1">
-          <button type="button" class="depth-carousel__dot is-active" role="tab" aria-selected="true" aria-label="Ir a foto 1"></button>
-          <button type="button" class="depth-carousel__dot" role="tab" aria-selected="false" aria-label="Ir a foto 2"></button>
-          <button type="button" class="depth-carousel__dot" role="tab" aria-selected="false" aria-label="Ir a foto 3"></button>
-          <button type="button" class="depth-carousel__dot" role="tab" aria-selected="false" aria-label="Ir a foto 4"></button>
-        </div>
-      </div>
-
-      <div class="depth-carousel" id="galCarousel2" tabindex="0" role="group" aria-roledescription="carrusel" aria-label="Galería de fotos, grupo 2">
-        <div class="depth-carousel__stage">
-          <div class="depth-carousel__card">
-            <img class="depth-carousel__img" src="https://images.squarespace-cdn.com/content/v1/5b58e6d7a2772c975945ec1a/1671389407169-Y1TCLC999HTVLD9C4N20/WhatsApp+Image+2022-12-18+at+15.35.34+%281%29.jpeg" alt="Curso de cocina 2022" draggable="false">
-            <span class="depth-carousel__tint"></span>
-          </div>
-          <div class="depth-carousel__card">
-            <img class="depth-carousel__img" src="https://images.squarespace-cdn.com/content/v1/5b58e6d7a2772c975945ec1a/1660494662448-21Q97W1H91TB8GLNHAI6/WhatsApp+Image+2022-08-14+at+1.21.28+PM+%287%29.jpeg" alt="Día del niño 2022" draggable="false">
-            <span class="depth-carousel__tint"></span>
-          </div>
-          <div class="depth-carousel__card">
-            <img class="depth-carousel__img" src="https://images.squarespace-cdn.com/content/v1/5b58e6d7a2772c975945ec1a/1667780288601-6N0947M05JB66W016PQ1/WhatsApp+Image+2022-11-06+at+8.24.19+AM+%281%29.jpeg" alt="Encuentro en Artigas" draggable="false">
-            <span class="depth-carousel__tint"></span>
-          </div>
-          <div class="depth-carousel__card">
-            <img class="depth-carousel__img" src="https://images.squarespace-cdn.com/content/v1/5b58e6d7a2772c975945ec1a/1705445693618-JQBX73K3BGAYAUN6JNVJ/WhatsApp+Image+2024-01-15+at+08.47.22.jpeg" alt="Cierre de año 2023" draggable="false">
-            <span class="depth-carousel__tint"></span>
-          </div>
-        </div>
-        <button type="button" class="depth-carousel__arrow depth-carousel__arrow--prev" aria-label="Foto anterior">
-          <svg viewBox="0 0 24 24" width="18" height="18"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-        <button type="button" class="depth-carousel__arrow depth-carousel__arrow--next" aria-label="Siguiente foto">
-          <svg viewBox="0 0 24 24" width="18" height="18"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-        <div class="depth-carousel__dots" role="tablist" aria-label="Fotos, grupo 2">
-          <button type="button" class="depth-carousel__dot is-active" role="tab" aria-selected="true" aria-label="Ir a foto 1"></button>
-          <button type="button" class="depth-carousel__dot" role="tab" aria-selected="false" aria-label="Ir a foto 2"></button>
-          <button type="button" class="depth-carousel__dot" role="tab" aria-selected="false" aria-label="Ir a foto 3"></button>
-          <button type="button" class="depth-carousel__dot" role="tab" aria-selected="false" aria-label="Ir a foto 4"></button>
-        </div>
-      </div>
+    <div class="parallax-carousel" id="galParallax" tabindex="0" role="group" aria-roledescription="carrusel" aria-label="Galería de fotos">
+      <div class="pc-slide"><span class="pc-slide__img" style="background-image:url('https://images.squarespace-cdn.com/content/v1/5b58e6d7a2772c975945ec1a/1540276897078-19UQ4N3WTCTRQPSFBL5M/2.jpg')" role="img" aria-label="Actividad comunitaria"></span><span class="pc-slide__dim"></span></div>
+      <div class="pc-slide"><span class="pc-slide__img" style="background-image:url('https://images.squarespace-cdn.com/content/v1/5b58e6d7a2772c975945ec1a/1540276904916-G29JJYG9916AQ6FBD43R/11.jpg')" role="img" aria-label="Actividad comunitaria"></span><span class="pc-slide__dim"></span></div>
+      <div class="pc-slide"><span class="pc-slide__img" style="background-image:url('https://images.squarespace-cdn.com/content/v1/5b58e6d7a2772c975945ec1a/1540276901851-IHQRDPEXTCJYF02G5TMK/7.jpg')" role="img" aria-label="Actividad comunitaria"></span><span class="pc-slide__dim"></span></div>
+      <div class="pc-slide"><span class="pc-slide__img" style="background-image:url('https://images.squarespace-cdn.com/content/v1/5b58e6d7a2772c975945ec1a/1540276921908-HLW59F7EMMMP790DAZPC/1.jpg')" role="img" aria-label="Actividad comunitaria"></span><span class="pc-slide__dim"></span></div>
+      <div class="pc-slide"><span class="pc-slide__img" style="background-image:url('https://images.squarespace-cdn.com/content/v1/5b58e6d7a2772c975945ec1a/1671389407169-Y1TCLC999HTVLD9C4N20/WhatsApp+Image+2022-12-18+at+15.35.34+%281%29.jpeg')" role="img" aria-label="Curso de cocina 2022"></span><span class="pc-slide__dim"></span></div>
+      <div class="pc-slide"><span class="pc-slide__img" style="background-image:url('https://images.squarespace-cdn.com/content/v1/5b58e6d7a2772c975945ec1a/1660494662448-21Q97W1H91TB8GLNHAI6/WhatsApp+Image+2022-08-14+at+1.21.28+PM+%287%29.jpeg')" role="img" aria-label="Día del niño 2022"></span><span class="pc-slide__dim"></span></div>
+      <div class="pc-slide"><span class="pc-slide__img" style="background-image:url('https://images.squarespace-cdn.com/content/v1/5b58e6d7a2772c975945ec1a/1667780288601-6N0947M05JB66W016PQ1/WhatsApp+Image+2022-11-06+at+8.24.19+AM+%281%29.jpeg')" role="img" aria-label="Encuentro en Artigas"></span><span class="pc-slide__dim"></span></div>
+      <div class="pc-slide"><span class="pc-slide__img" style="background-image:url('https://images.squarespace-cdn.com/content/v1/5b58e6d7a2772c975945ec1a/1705445693618-JQBX73K3BGAYAUN6JNVJ/WhatsApp+Image+2024-01-15+at+08.47.22.jpeg')" role="img" aria-label="Cierre de año 2023"></span><span class="pc-slide__dim"></span></div>
     </div>
   </div>
 </section>
@@ -789,172 +717,113 @@
   var locGallery = document.getElementById("locGallery");
   if (locGallery) initAccordionGallery(locGallery, {});
 
-  function initDepthCarousel(root, opts) {
+  function initParallaxCarousel(root, opts) {
     var cfg = Object.assign({
-      depth: 200, spread: 80, tilt: 22, tiltDirection: "right",
-      perspective: 1200, visibleCards: 4, falloff: 0.2, blur: 6,
-      duration: 700, loop: true, cardWidth: 210,
-      autoplay: true, autoplayDelay: 4200
+      imageWidth: 320, gap: 28, parallaxIntensity: 0.4, uvScale: 0.85,
+      lerp: 0.08, wheelSensitivity: 1, dragSensitivity: 1.4,
+      loop: true, autoplaySpeed: 26, pauseOnHover: true
     }, opts || {});
 
-    var cards = Array.prototype.slice.call(root.querySelectorAll(".depth-carousel__card"));
-    var tints = cards.map(function (c) { return c.querySelector(".depth-carousel__tint"); });
-    var dots = Array.prototype.slice.call(root.querySelectorAll(".depth-carousel__dot"));
-    var prevBtn = root.querySelector(".depth-carousel__arrow--prev");
-    var nextBtn = root.querySelector(".depth-carousel__arrow--next");
-    var n = cards.length;
+    var slides = Array.prototype.slice.call(root.querySelectorAll(".pc-slide"));
+    var imgs = slides.map(function (s) { return s.querySelector(".pc-slide__img"); });
+    var dims = slides.map(function (s) { return s.querySelector(".pc-slide__dim"); });
+    var n = slides.length;
     if (!n) return;
 
-    root.style.setProperty("--dc-perspective", cfg.perspective + "px");
-
-    var pos = 0;
-    var focus = 0;
-    var scale = 1;
-    var rafId = null;
     var reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     function clamp(v, min, max) { return Math.min(Math.max(v, min), max); }
-    function power3Out(t) { return 1 - Math.pow(1 - t, 3); }
 
-    function layout(p) {
-      var dir = cfg.tiltDirection === "left" ? -1 : 1;
-      for (var i = 0; i < n; i++) {
-        var el = cards[i];
-        var d = i - p;
-        if (cfg.loop && n > 1) {
-          d = ((d % n) + n) % n;
-          if (d > n / 2) d -= n;
-        }
-        var back = Math.max(0, d);
-        var az = Math.abs(d);
-        var shown = az <= cfg.visibleCards + 0.5;
-        var tz = -cfg.depth * d;
-        var tx = dir * cfg.spread * d;
-        var ry = dir * cfg.tilt * clamp(d, 0, 1);
-        var opacity = d < 0 ? Math.max(0, 1 + d) : 1;
-        if (!shown) opacity = 0;
-        var brightness = Math.max(0.15, 1 - back * cfg.falloff);
-        var blurPx = cfg.blur > 0 ? Math.min(cfg.blur, (back / Math.max(1, cfg.visibleCards)) * cfg.blur) : 0;
-        var zi = Math.round(2000 - d * 20);
-        el.style.transform = "translate(-50%, -50%) scale(" + scale + ") translateX(" + tx.toFixed(2) + "px) translateZ(" + tz.toFixed(2) + "px) rotateY(" + ry.toFixed(3) + "deg)";
-        el.style.opacity = opacity.toFixed(3);
-        el.style.filter = "brightness(" + brightness.toFixed(3) + ") blur(" + blurPx.toFixed(2) + "px)";
-        el.style.zIndex = String(zi);
-        el.style.pointerEvents = shown && opacity > 0.05 ? "auto" : "none";
-        if (tints[i]) tints[i].style.opacity = clamp(back * cfg.falloff * 1.25, 0, 0.86).toFixed(3);
-      }
+    function step() {
+      var w = window.innerWidth < 640 ? 220 : cfg.imageWidth;
+      var gap = window.innerWidth < 640 ? 18 : cfg.gap;
+      return w + gap;
     }
 
-    function setActiveDot(idx) {
-      dots.forEach(function (d, i) {
-        var active = i === idx;
-        d.classList.toggle("is-active", active);
-        d.setAttribute("aria-selected", active ? "true" : "false");
+    var offset = 0, target = 0, hovered = false, focused = false, dragging = false;
+    var lastT = null;
+
+    function layout() {
+      var itemStep = step();
+      var total = n * itemStep;
+      var rootW = root.clientWidth;
+      var maxShift = (window.innerWidth < 640 ? 220 : cfg.imageWidth) * (1 / cfg.uvScale - 1) / 2;
+
+      slides.forEach(function (slide, i) {
+        var raw = i * itemStep - offset;
+        var wrapped;
+        if (cfg.loop) {
+          wrapped = ((raw % total) + total) % total;
+          if (wrapped > total / 2) wrapped -= total;
+        } else {
+          wrapped = raw;
+        }
+        slide.style.transform = "translate(calc(-50% + " + wrapped.toFixed(1) + "px), -50%)";
+
+        var norm = clamp(wrapped / (rootW / 2 || 1), -1, 1);
+        var imgShift = clamp(-wrapped * cfg.parallaxIntensity * 0.5, -maxShift, maxShift);
+        if (imgs[i]) imgs[i].style.transform = "translateX(" + imgShift.toFixed(1) + "px)";
+        if (dims[i]) dims[i].style.opacity = (Math.abs(norm) * 0.35).toFixed(3);
       });
     }
 
-    function tweenTo(target, animate) {
-      if (rafId) cancelAnimationFrame(rafId);
-      var start = pos;
-      var delta = target - start;
-      if (!animate || reduced || Math.abs(delta) < 0.0001) {
-        pos = cfg.loop && n > 1 ? ((target % n) + n) % n : target;
-        layout(pos);
-        return;
+    function tick(t) {
+      if (lastT === null) lastT = t;
+      var dt = (t - lastT) / 1000;
+      lastT = t;
+
+      if (!reduced && cfg.autoplaySpeed && !dragging && !(cfg.pauseOnHover && (hovered || focused))) {
+        target += cfg.autoplaySpeed * dt;
       }
-      var t0 = performance.now();
-      function step(now) {
-        var t = clamp((now - t0) / cfg.duration, 0, 1);
-        pos = start + delta * power3Out(t);
-        layout(pos);
-        if (t < 1) {
-          rafId = requestAnimationFrame(step);
-        } else {
-          pos = cfg.loop && n > 1 ? ((target % n) + n) % n : target;
-          layout(pos);
-          rafId = null;
-        }
+      if (!cfg.loop) {
+        target = clamp(target, 0, (n - 1) * step());
       }
-      rafId = requestAnimationFrame(step);
+
+      var factor = reduced ? 1 : clamp(dt / Math.max(cfg.lerp, 0.01) * 0.06, 0, 1);
+      offset += (target - offset) * factor;
+      if (Math.abs(target - offset) < 0.05) offset = target;
+      layout();
+      requestAnimationFrame(tick);
     }
 
-    function setFocus(rawIndex, animate) {
-      if (n < 1) return;
-      var idx = cfg.loop ? ((rawIndex % n) + n) % n : clamp(rawIndex, 0, n - 1);
-      var delta = idx - pos;
-      if (cfg.loop && n > 1) {
-        delta = ((delta % n) + n) % n;
-        if (delta > n / 2) delta -= n;
-      }
-      tweenTo(pos + delta, animate);
-      if (idx !== focus) {
-        focus = idx;
-        setActiveDot(idx);
-      }
-    }
+    root.addEventListener("wheel", function (e) {
+      var delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
+      target += delta * cfg.wheelSensitivity;
+      e.preventDefault();
+    }, { passive: false });
 
-    function navigateBy(step) { setFocus(focus + step, true); }
-
-    if (prevBtn) prevBtn.addEventListener("click", function () { navigateBy(-1); });
-    if (nextBtn) nextBtn.addEventListener("click", function () { navigateBy(1); });
-    dots.forEach(function (dot, i) { dot.addEventListener("click", function () { setFocus(i, true); }); });
-    cards.forEach(function (card, i) { card.addEventListener("click", function () { setFocus(i, true); }); });
-
-    root.addEventListener("keydown", function (e) {
-      if (e.key === "ArrowLeft") { e.preventDefault(); navigateBy(-1); }
-      else if (e.key === "ArrowRight") { e.preventDefault(); navigateBy(1); }
-    });
-
-    var swipe = null;
+    var dragStartX = 0, dragStartTarget = 0;
     root.addEventListener("pointerdown", function (e) {
-      swipe = { x: e.clientX, moved: false };
+      dragging = true;
+      dragStartX = e.clientX;
+      dragStartTarget = target;
+      root.setPointerCapture && root.setPointerCapture(e.pointerId);
     });
     root.addEventListener("pointermove", function (e) {
-      if (!swipe) return;
-      if (Math.abs(e.clientX - swipe.x) > 6) swipe.moved = true;
+      if (!dragging) return;
+      target = dragStartTarget + (dragStartX - e.clientX) * cfg.dragSensitivity;
     });
-    root.addEventListener("pointerup", function (e) {
-      if (!swipe) return;
-      var dx = e.clientX - swipe.x;
-      if (swipe.moved && Math.abs(dx) > 40) {
-        navigateBy(dx < 0 ? 1 : -1);
-      }
-      swipe = null;
+    function endDrag() { dragging = false; }
+    root.addEventListener("pointerup", endDrag);
+    root.addEventListener("pointercancel", endDrag);
+
+    root.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowLeft") { e.preventDefault(); target -= step(); }
+      else if (e.key === "ArrowRight") { e.preventDefault(); target += step(); }
     });
 
-    function updateScale() {
-      var w = root.clientWidth;
-      var needed = cfg.cardWidth + Math.abs(cfg.spread) * 2 + 120;
-      scale = clamp(w / needed, 0.5, 1);
-      layout(pos);
-    }
-    window.addEventListener("resize", updateScale);
-    updateScale();
+    root.addEventListener("mouseenter", function () { hovered = true; });
+    root.addEventListener("mouseleave", function () { hovered = false; });
+    root.addEventListener("focusin", function () { focused = true; });
+    root.addEventListener("focusout", function () { focused = false; });
+    window.addEventListener("resize", layout);
 
-    if (cfg.autoplay && !reduced && n > 1) {
-      var hovered = false, focused = false, timer = null;
-      function start() {
-        stop();
-        timer = setInterval(function () {
-          if (!hovered && !focused) navigateBy(1);
-        }, Math.max(cfg.autoplayDelay, 600));
-      }
-      function stop() { if (timer) clearInterval(timer); timer = null; }
-      root.addEventListener("mouseenter", function () { hovered = true; });
-      root.addEventListener("mouseleave", function () { hovered = false; });
-      root.addEventListener("focusin", function () { focused = true; });
-      root.addEventListener("focusout", function () { focused = false; });
-      start();
-    }
-
-    layout(0);
-    setActiveDot(0);
+    layout();
+    requestAnimationFrame(tick);
   }
 
-  var galCarousel1 = document.getElementById("galCarousel1");
-  if (galCarousel1) initDepthCarousel(galCarousel1, { autoplayDelay: 4000 });
-  var galCarousel2 = document.getElementById("galCarousel2");
-  if (galCarousel2) initDepthCarousel(galCarousel2, { autoplayDelay: 5200 });
+  var galParallax = document.getElementById("galParallax");
+  if (galParallax) initParallaxCarousel(galParallax, {});
 </script>
 
 </body>
