@@ -8,6 +8,7 @@
 <meta name="robots" content="noindex, follow">
 <link rel="canonical" href="https://avvedit-creator.github.io/madrinas-por-la-vida/">
 <meta name="theme-color" content="#B2985F">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%231E1B16'/%3E%3Ctext x='32' y='44' font-family='Georgia,serif' font-size='34' font-weight='700' fill='%23CBBE8B' text-anchor='middle'%3EM%3C/text%3E%3C/svg%3E">
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Madrinas Por La Vida">
@@ -64,6 +65,12 @@
   img{max-width:100%;display:block;}
   a{color:inherit;text-decoration:none;}
   .container{max-width:1120px;margin:0 auto;padding:0 24px;}
+  .skip-link{
+    position:absolute;top:-60px;left:12px;z-index:200;
+    background:var(--ink);color:#fff;padding:12px 18px;border-radius:8px;
+    font-weight:600;font-size:14px;transition:top .2s ease;
+  }
+  .skip-link:focus{top:12px;}
   .eyebrow{
     font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
     color:var(--primary);margin-bottom:10px;display:inline-block;
@@ -142,7 +149,7 @@
 
   .phone-copy{
     display:flex;align-items:center;gap:12px;background:var(--white);border:1px solid var(--line);
-    border-radius:12px;padding:16px 18px;cursor:pointer;margin-top:18px;transition:border-color .15s ease;
+    border-radius:8px;padding:16px 18px;cursor:pointer;margin-top:18px;transition:border-color .15s ease;
   }
   .phone-copy:hover{border-color:var(--primary);}
   .phone-copy svg{width:18px;height:18px;color:var(--muted);flex-shrink:0;}
@@ -162,7 +169,7 @@
   .field{margin-bottom:18px;}
   .field label{display:block;font-size:13.5px;font-weight:600;margin-bottom:7px;}
   .field input, .field textarea{
-    width:100%;border:1px solid var(--line);border-radius:10px;padding:13px 14px;
+    width:100%;border:1px solid var(--line);border-radius:8px;padding:13px 14px;
     font-family:'Work Sans',sans-serif;font-size:15px;background:var(--white);color:var(--ink);
   }
   .field textarea{resize:vertical;min-height:96px;}
@@ -175,11 +182,11 @@
   .mission-grid p{color:var(--muted);margin-bottom:16px;font-size:16px;}
   .founder{
     margin-top:28px;padding:20px 22px;background:var(--paper-alt);border-left:3px solid var(--primary);
-    border-radius:4px;
+    border-radius:8px;
   }
   .founder strong{font-family:'Lora',serif;font-size:16px;}
   .founder span{display:block;color:var(--muted);font-size:13.5px;margin-top:2px;}
-  .mission-photo{border-radius:10px;overflow:hidden;box-shadow:0 24px 48px -20px rgba(43,36,32,.35);}
+  .mission-photo{border-radius:16px;overflow:hidden;box-shadow:0 24px 48px -20px rgba(43,36,32,.35);}
   .mission-photo img{
     width:100%;display:block;
     -webkit-mask-image:linear-gradient(to right, transparent 0%, #000 20%);
@@ -244,7 +251,7 @@
     touch-action:pan-y;outline:none;user-select:none;-webkit-user-select:none;cursor:grab;
   }
   .parallax-carousel:active{cursor:grabbing;}
-  .parallax-carousel:focus-visible{outline:2px solid rgba(178,152,95,.5);outline-offset:6px;border-radius:14px;}
+  .parallax-carousel:focus-visible{outline:2px solid rgba(178,152,95,.5);outline-offset:6px;border-radius:16px;}
   .pc-slide{
     position:absolute;top:50%;left:50%;width:320px;height:440px;border-radius:16px;
     overflow:hidden;background:var(--ink);box-shadow:0 30px 60px -20px rgba(20,15,10,.5);
@@ -265,13 +272,15 @@
   .ayudar{background:var(--ink);color:#fff;}
   .ayudar .section-head p{color:rgba(255,255,255,.72);}
   .ayudar .eyebrow{color:var(--gold);}
-  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  .cards{display:grid;grid-template-columns:1fr 1.14fr 1fr;gap:22px;align-items:start;}
   .card{
     position:relative;overflow:hidden;
     background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);
-    border-radius:14px;padding:30px 26px;
+    border-radius:16px;padding:30px 26px;
     transition:transform .3s ease,border-color .3s ease,background .3s ease,box-shadow .3s ease;
   }
+  .card--featured{background:rgba(203,190,139,.08);border-color:rgba(203,190,139,.35);padding:36px 26px;}
+  @media (max-width:860px){ .card--featured{padding:30px 26px;} }
   .card:hover{
     transform:translateY(-5px);border-color:rgba(203,190,139,.4);
     background:rgba(255,255,255,.085);box-shadow:0 24px 44px -22px rgba(0,0,0,.5);
@@ -346,6 +355,8 @@
 </head>
 <body>
 
+<a href="#main-content" class="skip-link">Saltar al contenido</a>
+
 <header>
   <div class="container nav">
     <a href="#" class="logo">Madrinas <span>Por La Vida</span></a>
@@ -365,7 +376,7 @@
   </div>
 </header>
 
-<section class="hero">
+<section class="hero" id="main-content">
   <video id="hero-video" autoplay muted loop playsinline preload="auto" poster="assets/hero-poster.jpg" aria-hidden="true">
     <source src="assets/hero-video.mp4" type="video/mp4">
   </video>
@@ -559,7 +570,7 @@
           Quiero colaborar
         </a>
       </div>
-      <div class="card">
+      <div class="card card--featured">
         <span class="card-blob" aria-hidden="true"></span>
         <div class="card-head">
           <span class="card-icon" aria-hidden="true">
