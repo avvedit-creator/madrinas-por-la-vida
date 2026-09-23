@@ -193,47 +193,51 @@
 
   /* Localidades */
   .localidades{background:var(--paper-alt);}
-  .loc-label{position:absolute;left:18px;bottom:16px;z-index:2;color:#fff;}
-  .loc-label .tag{font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);font-weight:600;}
-  .loc-label h3{font-size:20px;margin-top:4px;}
 
-  /* Carrusel de profundidad (localidades) */
-  .depth-carousel{
-    position:relative;width:100%;height:440px;margin:0 auto;
-    display:flex;align-items:center;justify-content:center;
-    perspective:var(--dc-perspective,1400px);perspective-origin:50% 50%;
-    touch-action:pan-y;outline:none;user-select:none;-webkit-user-select:none;cursor:grab;
+  /* Accordion Gallery (localidades) */
+  .accordion-gallery{
+    --ag-accent:var(--gold);--ag-overlay:var(--ink);--ag-text:#fff;
+    --ag-gap:10px;--ag-radius:16px;--ag-duration:.6s;--ag-ease:cubic-bezier(.16,1,.3,1);
+    --ag-media-size:340px;
+    display:flex;gap:var(--ag-gap);width:100%;height:460px;
   }
-  .depth-carousel:active{cursor:grabbing;}
-  .depth-carousel:focus-visible{outline:2px solid rgba(178,152,95,.5);outline-offset:6px;border-radius:14px;}
-  .depth-carousel__stage{position:absolute;inset:0;transform-style:preserve-3d;}
-  .depth-carousel__card{
-    position:absolute;top:50%;left:50%;width:280px;height:350px;border-radius:14px;
-    transform-origin:center center;overflow:hidden;background:var(--ink);
+  .ag-panel{
+    position:relative;flex:1 1 0;min-width:0;overflow:hidden;border-radius:var(--ag-radius);
+    cursor:pointer;outline:none;background:var(--ink);
     box-shadow:0 30px 60px -20px rgba(20,15,10,.55),0 8px 20px -10px rgba(20,15,10,.4);
-    will-change:transform,opacity,filter;cursor:pointer;transform:translate(-50%,-50%);
+    transition:flex-grow var(--ag-duration) var(--ag-ease),transform var(--ag-duration) var(--ag-ease);
   }
-  .depth-carousel__img{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none;-webkit-user-drag:none;}
-  .depth-carousel__tint{position:absolute;inset:0;opacity:0;pointer-events:none;mix-blend-mode:multiply;background:#1E1B16;}
-  .depth-carousel__card::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg, transparent 40%, rgba(20,15,10,.82) 100%);}
-  .depth-carousel__arrow{
-    position:absolute;top:50%;transform:translateY(-50%);z-index:3000;
-    width:42px;height:42px;display:grid;place-items:center;border:1px solid rgba(255,255,255,.2);
-    border-radius:999px;background:rgba(30,27,22,.55);backdrop-filter:blur(8px);color:#fff;
-    cursor:pointer;transition:background .2s ease,border-color .2s ease,transform .2s ease;
+  .ag-panel:focus-visible{box-shadow:0 0 0 2px var(--ag-accent),0 30px 60px -20px rgba(20,15,10,.55);}
+  .ag-panel__frame{position:absolute;inset:0;overflow:hidden;border-radius:inherit;}
+  .ag-panel__media{
+    --ag-gray:1;--ag-dim:.35;position:absolute;top:50%;left:50%;width:var(--ag-media-size);height:100%;
+    transform:translate(-50%,-50%);filter:grayscale(var(--ag-gray));
+    transition:transform var(--ag-duration) var(--ag-ease),filter var(--ag-duration) var(--ag-ease);
   }
-  .depth-carousel__arrow:hover{background:rgba(30,27,22,.85);border-color:rgba(255,255,255,.4);}
-  .depth-carousel__arrow:active{transform:translateY(-50%) scale(.94);}
-  .depth-carousel__arrow--prev{left:6px;}
-  .depth-carousel__arrow--next{right:6px;}
-  .depth-carousel__dots{
-    position:absolute;bottom:8px;left:50%;transform:translateX(-50%);z-index:3000;
-    display:flex;gap:8px;padding:8px 12px;border-radius:999px;background:rgba(30,27,22,.35);backdrop-filter:blur(6px);
+  .ag-panel__media img{width:100%;height:100%;object-fit:cover;display:block;user-select:none;-webkit-user-drag:none;}
+  .ag-panel__overlay{
+    position:absolute;inset:0;pointer-events:none;
+    background:linear-gradient(180deg, transparent 40%, rgba(20,15,10,.85) 100%);
+    opacity:calc(.4 + var(--ag-dim,.35) * .6);
+    transition:opacity var(--ag-duration) var(--ag-ease);
   }
-  .depth-carousel__dot{width:7px;height:7px;padding:0;border:none;border-radius:999px;background:rgba(255,255,255,.4);cursor:pointer;transition:width .25s ease,background .25s ease;}
-  .depth-carousel__dot.is-active{width:20px;background:var(--gold);}
+  .ag-panel__label{position:absolute;left:20px;bottom:18px;right:20px;display:flex;align-items:center;gap:12px;pointer-events:none;z-index:2;}
+  .ag-panel__bar{
+    flex:0 0 auto;width:3px;height:26px;border-radius:3px;background:var(--ag-accent);
+    opacity:0;transform:translateX(-14px);transition:opacity .35s ease,transform .35s ease;
+    box-shadow:0 0 12px rgba(178,152,95,.5);
+  }
+  .ag-panel__text-group{opacity:0;transform:translateX(-14px);transition:opacity .35s ease,transform .35s ease;white-space:nowrap;overflow:hidden;}
+  .ag-panel__tag{display:block;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ag-accent);font-weight:600;}
+  .ag-panel__text{display:block;font-size:20px;font-weight:600;color:var(--ag-text);margin-top:4px;text-shadow:0 2px 14px rgba(0,0,0,.55);}
+  .ag-panel.is-active .ag-panel__bar,
+  .ag-panel.is-active .ag-panel__text-group{opacity:1;transform:translateX(0);}
   .loc-cta{text-align:center;margin-top:28px;}
-  @media (max-width:640px){ .depth-carousel{height:360px;} .depth-carousel__card{width:220px;height:275px;} }
+  @media (max-width:640px){
+    .accordion-gallery{flex-direction:column;height:auto;}
+    .ag-panel{min-height:100px;transform:none !important;}
+    .ag-panel__media{width:100%;height:100%;}
+  }
 
   /* Galeria */
   .galeria{background:var(--white);}
@@ -401,48 +405,56 @@
       <h2>Apoyamos a madres en distintas localidades de Uruguay</h2>
       <p>Cada centro funciona como un espacio de contención, formación y acompañamiento cercano a la comunidad.</p>
     </div>
-    <div class="depth-carousel" id="locCarousel" tabindex="0" role="group" aria-roledescription="carrusel" aria-label="Localidades de Madrinas Por La Vida">
-      <div class="depth-carousel__stage">
-        <div class="depth-carousel__card">
-          <img class="depth-carousel__img" src="https://images.squarespace-cdn.com/content/v1/5b58e6d7a2772c975945ec1a/1534148789393-TCU6CLM454JXTOT22SDG/85f52626-b958-4043-9554-f8a73f18a7c1.JPG" alt="Centro de Malvín" draggable="false">
-          <span class="depth-carousel__tint"></span>
-          <div class="loc-label"><span class="tag">Montevideo</span><h3>Malvín</h3></div>
-        </div>
-        <div class="depth-carousel__card">
-          <img class="depth-carousel__img" src="https://images.squarespace-cdn.com/content/v1/5b58e6d7a2772c975945ec1a/1534149574510-Z5J9I3WPFIDDSYZIZ6KV/837a187f-6dbc-4c1c-8426-2574d39de934.JPG" alt="Centro de Aeroparque" draggable="false">
-          <span class="depth-carousel__tint"></span>
-          <div class="loc-label"><span class="tag">Canelones</span><h3>Aeroparque</h3></div>
-        </div>
-        <div class="depth-carousel__card">
-          <img class="depth-carousel__img" src="https://images.squarespace-cdn.com/content/v1/5b58e6d7a2772c975945ec1a/1534583406787-A541D41Z2NIM2CE354C4/WhatsApp+Image+2018-08-17+at+18.47.31.jpeg" alt="Centro de Artigas" draggable="false">
-          <span class="depth-carousel__tint"></span>
-          <div class="loc-label"><span class="tag">Frontera norte</span><h3>Artigas</h3></div>
-        </div>
-        <div class="depth-carousel__card">
-          <img class="depth-carousel__img" src="https://images.squarespace-cdn.com/content/v1/5b58e6d7a2772c975945ec1a/adf25ecf-9f76-4937-9bc1-09f2110919ff/236786235_102359135490563_8200797334450980999_n.jpg" alt="Centro de Sauce" draggable="false">
-          <span class="depth-carousel__tint"></span>
-          <div class="loc-label"><span class="tag">Canelones</span><h3>Sauce</h3></div>
-        </div>
-        <div class="depth-carousel__card">
-          <img class="depth-carousel__img" src="https://images.squarespace-cdn.com/content/v1/5b58e6d7a2772c975945ec1a/1562607213451-KOT321H30Q6LU8LBJKT2/GABIRELITA20190701.jpg" alt="Centro en Colombia" draggable="false">
-          <span class="depth-carousel__tint"></span>
-          <div class="loc-label"><span class="tag">Internacional</span><h3>Colombia</h3></div>
-        </div>
+    <div class="accordion-gallery" id="locGallery" role="list" aria-label="Localidades de Madrinas Por La Vida">
+      <div class="ag-panel" tabindex="0" role="listitem" aria-label="Malvín, Montevideo">
+        <span class="ag-panel__frame">
+          <span class="ag-panel__media"><img src="https://images.squarespace-cdn.com/content/v1/5b58e6d7a2772c975945ec1a/1534148789393-TCU6CLM454JXTOT22SDG/85f52626-b958-4043-9554-f8a73f18a7c1.JPG" alt="Centro de Malvín" draggable="false"></span>
+          <span class="ag-panel__overlay" aria-hidden="true"></span>
+        </span>
+        <span class="ag-panel__label" aria-hidden="true">
+          <span class="ag-panel__bar"></span>
+          <span class="ag-panel__text-group"><span class="ag-panel__tag">Montevideo</span><span class="ag-panel__text">Malvín</span></span>
+        </span>
       </div>
-
-      <button type="button" class="depth-carousel__arrow depth-carousel__arrow--prev" aria-label="Localidad anterior">
-        <svg viewBox="0 0 24 24" width="20" height="20"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </button>
-      <button type="button" class="depth-carousel__arrow depth-carousel__arrow--next" aria-label="Siguiente localidad">
-        <svg viewBox="0 0 24 24" width="20" height="20"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </button>
-
-      <div class="depth-carousel__dots" role="tablist" aria-label="Localidades">
-        <button type="button" class="depth-carousel__dot is-active" role="tab" aria-selected="true" aria-label="Ir a Malvín"></button>
-        <button type="button" class="depth-carousel__dot" role="tab" aria-selected="false" aria-label="Ir a Aeroparque"></button>
-        <button type="button" class="depth-carousel__dot" role="tab" aria-selected="false" aria-label="Ir a Artigas"></button>
-        <button type="button" class="depth-carousel__dot" role="tab" aria-selected="false" aria-label="Ir a Sauce"></button>
-        <button type="button" class="depth-carousel__dot" role="tab" aria-selected="false" aria-label="Ir a Colombia"></button>
+      <div class="ag-panel" tabindex="0" role="listitem" aria-label="Aeroparque, Canelones">
+        <span class="ag-panel__frame">
+          <span class="ag-panel__media"><img src="https://images.squarespace-cdn.com/content/v1/5b58e6d7a2772c975945ec1a/1534149574510-Z5J9I3WPFIDDSYZIZ6KV/837a187f-6dbc-4c1c-8426-2574d39de934.JPG" alt="Centro de Aeroparque" draggable="false"></span>
+          <span class="ag-panel__overlay" aria-hidden="true"></span>
+        </span>
+        <span class="ag-panel__label" aria-hidden="true">
+          <span class="ag-panel__bar"></span>
+          <span class="ag-panel__text-group"><span class="ag-panel__tag">Canelones</span><span class="ag-panel__text">Aeroparque</span></span>
+        </span>
+      </div>
+      <div class="ag-panel" tabindex="0" role="listitem" aria-label="Artigas, Frontera norte">
+        <span class="ag-panel__frame">
+          <span class="ag-panel__media"><img src="https://images.squarespace-cdn.com/content/v1/5b58e6d7a2772c975945ec1a/1534583406787-A541D41Z2NIM2CE354C4/WhatsApp+Image+2018-08-17+at+18.47.31.jpeg" alt="Centro de Artigas" draggable="false"></span>
+          <span class="ag-panel__overlay" aria-hidden="true"></span>
+        </span>
+        <span class="ag-panel__label" aria-hidden="true">
+          <span class="ag-panel__bar"></span>
+          <span class="ag-panel__text-group"><span class="ag-panel__tag">Frontera norte</span><span class="ag-panel__text">Artigas</span></span>
+        </span>
+      </div>
+      <div class="ag-panel" tabindex="0" role="listitem" aria-label="Sauce, Canelones">
+        <span class="ag-panel__frame">
+          <span class="ag-panel__media"><img src="https://images.squarespace-cdn.com/content/v1/5b58e6d7a2772c975945ec1a/adf25ecf-9f76-4937-9bc1-09f2110919ff/236786235_102359135490563_8200797334450980999_n.jpg" alt="Centro de Sauce" draggable="false"></span>
+          <span class="ag-panel__overlay" aria-hidden="true"></span>
+        </span>
+        <span class="ag-panel__label" aria-hidden="true">
+          <span class="ag-panel__bar"></span>
+          <span class="ag-panel__text-group"><span class="ag-panel__tag">Canelones</span><span class="ag-panel__text">Sauce</span></span>
+        </span>
+      </div>
+      <div class="ag-panel" tabindex="0" role="listitem" aria-label="Colombia, Internacional">
+        <span class="ag-panel__frame">
+          <span class="ag-panel__media"><img src="https://images.squarespace-cdn.com/content/v1/5b58e6d7a2772c975945ec1a/1562607213451-KOT321H30Q6LU8LBJKT2/GABIRELITA20190701.jpg" alt="Centro en Colombia" draggable="false"></span>
+          <span class="ag-panel__overlay" aria-hidden="true"></span>
+        </span>
+        <span class="ag-panel__label" aria-hidden="true">
+          <span class="ag-panel__bar"></span>
+          <span class="ag-panel__text-group"><span class="ag-panel__tag">Internacional</span><span class="ag-panel__text">Colombia</span></span>
+        </span>
       </div>
     </div>
 
@@ -604,171 +616,86 @@
     window.open("https://wa.me/" + WA_NUMERO + "?text=" + encodeURIComponent(texto), "_blank", "noopener");
   });
 
-  function initDepthCarousel(root, opts) {
+  function initAccordionGallery(root, opts) {
     var cfg = Object.assign({
-      depth: 220, spread: 90, tilt: 22, tiltDirection: "right",
-      perspective: 1400, visibleCards: 4, falloff: 0.2, blur: 6,
-      duration: 700, loop: true, cardWidth: 280,
-      autoplay: true, autoplayDelay: 4200
+      defaultIndex: 2, expandRatio: 0.52, orientation: "horizontal",
+      parallax: 0.5, tilt: 8, tiltDirection: "right", trigger: "hover"
     }, opts || {});
 
-    var stage = root.querySelector(".depth-carousel__stage");
-    var cards = Array.prototype.slice.call(root.querySelectorAll(".depth-carousel__card"));
-    var tints = cards.map(function (c) { return c.querySelector(".depth-carousel__tint"); });
-    var dots = Array.prototype.slice.call(root.querySelectorAll(".depth-carousel__dot"));
-    var prevBtn = root.querySelector(".depth-carousel__arrow--prev");
-    var nextBtn = root.querySelector(".depth-carousel__arrow--next");
-    var n = cards.length;
+    var panels = Array.prototype.slice.call(root.querySelectorAll(".ag-panel"));
+    var medias = panels.map(function (p) { return p.querySelector(".ag-panel__media"); });
+    var n = panels.length;
     if (!n) return;
 
-    root.style.setProperty("--dc-perspective", cfg.perspective + "px");
-
-    var pos = 0;
-    var focus = 0;
-    var scale = 1;
-    var rafId = null;
-    var reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var vertical = cfg.orientation === "vertical";
+    var active = Math.min(Math.max(cfg.defaultIndex, 0), n - 1);
+    var mediaSize = 340;
 
     function clamp(v, min, max) { return Math.min(Math.max(v, min), max); }
-    function power3Out(t) { return 1 - Math.pow(1 - t, 3); }
 
-    function layout(p) {
+    function layout() {
+      var r = clamp(cfg.expandRatio, 0.2, 0.9);
+      var grow = n > 1 ? (r * (n - 1)) / (1 - r) : 1;
       var dir = cfg.tiltDirection === "left" ? -1 : 1;
-      for (var i = 0; i < n; i++) {
-        var el = cards[i];
-        var d = i - p;
-        if (cfg.loop && n > 1) {
-          d = ((d % n) + n) % n;
-          if (d > n / 2) d -= n;
-        }
-        var back = Math.max(0, d);
-        var az = Math.abs(d);
-        var shown = az <= cfg.visibleCards + 0.5;
-        var tz = -cfg.depth * d;
-        var tx = dir * cfg.spread * d;
-        var ry = dir * cfg.tilt * clamp(d, 0, 1);
-        var opacity = d < 0 ? Math.max(0, 1 + d) : 1;
-        if (!shown) opacity = 0;
-        var brightness = Math.max(0.15, 1 - back * cfg.falloff);
-        var blurPx = cfg.blur > 0 ? Math.min(cfg.blur, (back / Math.max(1, cfg.visibleCards)) * cfg.blur) : 0;
-        var zi = Math.round(2000 - d * 20);
-        el.style.transform = "translate(-50%, -50%) scale(" + scale + ") translateX(" + tx.toFixed(2) + "px) translateZ(" + tz.toFixed(2) + "px) rotateY(" + ry.toFixed(3) + "deg)";
-        el.style.opacity = opacity.toFixed(3);
-        el.style.filter = "brightness(" + brightness.toFixed(3) + ") blur(" + blurPx.toFixed(2) + "px)";
-        el.style.zIndex = String(zi);
-        el.style.pointerEvents = shown && opacity > 0.05 ? "auto" : "none";
-        if (tints[i]) tints[i].style.opacity = clamp(back * cfg.falloff * 1.25, 0, 0.86).toFixed(3);
-      }
-    }
 
-    function setActiveDot(idx) {
-      dots.forEach(function (d, i) {
-        var active = i === idx;
-        d.classList.toggle("is-active", active);
-        d.setAttribute("aria-selected", active ? "true" : "false");
+      panels.forEach(function (panel, i) {
+        var isActive = i === active;
+        panel.classList.toggle("is-active", isActive);
+        panel.setAttribute("aria-current", isActive ? "true" : "false");
+        panel.style.flexGrow = isActive ? grow : 1;
+
+        var rot = isActive ? 0 : (i < active ? cfg.tilt : -cfg.tilt);
+        var rotDeg = dir * rot;
+        panel.style.transform = vertical ? "rotateX(" + (-rotDeg) + "deg)" : "rotateY(" + rotDeg + "deg)";
+
+        var media = medias[i];
+        if (media) {
+          var drift = clamp(active - i, -1.5, 1.5);
+          var shift = drift * cfg.parallax * mediaSize * 0.06;
+          media.style.transform = vertical
+            ? "translate(-50%, calc(-50% + " + (isActive ? 0 : shift) + "px))"
+            : "translate(calc(-50% + " + (isActive ? 0 : shift) + "px), -50%)";
+          media.style.setProperty("--ag-gray", isActive ? 0 : 1);
+          media.style.setProperty("--ag-dim", isActive ? 0 : 0.35);
+        }
       });
     }
 
-    function tweenTo(target, animate) {
-      if (rafId) cancelAnimationFrame(rafId);
-      var start = pos;
-      var delta = target - start;
-      if (!animate || reduced || Math.abs(delta) < 0.0001) {
-        pos = cfg.loop && n > 1 ? ((target % n) + n) % n : target;
-        layout(pos);
-        return;
-      }
-      var t0 = performance.now();
-      function step(now) {
-        var t = clamp((now - t0) / cfg.duration, 0, 1);
-        pos = start + delta * power3Out(t);
-        layout(pos);
-        if (t < 1) {
-          rafId = requestAnimationFrame(step);
-        } else {
-          pos = cfg.loop && n > 1 ? ((target % n) + n) % n : target;
-          layout(pos);
-          rafId = null;
-        }
-      }
-      rafId = requestAnimationFrame(step);
+    function setActive(i) {
+      var idx = clamp(i, 0, n - 1);
+      if (idx === active) return;
+      active = idx;
+      layout();
     }
 
-    function setFocus(rawIndex, animate) {
-      if (n < 1) return;
-      var idx = cfg.loop ? ((rawIndex % n) + n) % n : clamp(rawIndex, 0, n - 1);
-      var delta = idx - pos;
-      if (cfg.loop && n > 1) {
-        delta = ((delta % n) + n) % n;
-        if (delta > n / 2) delta -= n;
-      }
-      tweenTo(pos + delta, animate);
-      if (idx !== focus) {
-        focus = idx;
-        setActiveDot(idx);
-      }
+    function measure() {
+      var rect = root.getBoundingClientRect();
+      var total = vertical ? rect.height : rect.width;
+      var gap = 10;
+      var usable = Math.max(total - gap * (n - 1), 120);
+      mediaSize = Math.max(140, usable * clamp(cfg.expandRatio, 0.2, 0.9) * 1.22);
+      root.style.setProperty("--ag-media-size", mediaSize + "px");
+      layout();
     }
 
-    function navigateBy(step) { setFocus(focus + step, true); }
-
-    if (prevBtn) prevBtn.addEventListener("click", function () { navigateBy(-1); });
-    if (nextBtn) nextBtn.addEventListener("click", function () { navigateBy(1); });
-    dots.forEach(function (dot, i) { dot.addEventListener("click", function () { setFocus(i, true); }); });
-    cards.forEach(function (card, i) { card.addEventListener("click", function () { setFocus(i, true); }); });
-
-    root.addEventListener("keydown", function (e) {
-      if (e.key === "ArrowLeft") { e.preventDefault(); navigateBy(-1); }
-      else if (e.key === "ArrowRight") { e.preventDefault(); navigateBy(1); }
-    });
-
-    var swipe = null;
-    root.addEventListener("pointerdown", function (e) {
-      swipe = { x: e.clientX, moved: false };
-    });
-    root.addEventListener("pointermove", function (e) {
-      if (!swipe) return;
-      if (Math.abs(e.clientX - swipe.x) > 6) swipe.moved = true;
-    });
-    root.addEventListener("pointerup", function (e) {
-      if (!swipe) return;
-      var dx = e.clientX - swipe.x;
-      if (swipe.moved && Math.abs(dx) > 40) {
-        navigateBy(dx < 0 ? 1 : -1);
+    panels.forEach(function (panel, i) {
+      panel.addEventListener("click", function () { setActive(i); });
+      panel.addEventListener("focus", function () { setActive(i); });
+      if (cfg.trigger === "hover") {
+        panel.addEventListener("mouseenter", function () { setActive(i); });
       }
-      swipe = null;
+      panel.addEventListener("keydown", function (e) {
+        if (e.key === "ArrowRight" || e.key === "ArrowDown") { e.preventDefault(); setActive((i + 1) % n); }
+        else if (e.key === "ArrowLeft" || e.key === "ArrowUp") { e.preventDefault(); setActive((i - 1 + n) % n); }
+      });
     });
 
-    function updateScale() {
-      var w = root.clientWidth;
-      var needed = cfg.cardWidth + Math.abs(cfg.spread) * 2 + 120;
-      scale = clamp(w / needed, 0.5, 1);
-      layout(pos);
-    }
-    window.addEventListener("resize", updateScale);
-    updateScale();
-
-    if (cfg.autoplay && !reduced && n > 1) {
-      var hovered = false, focused = false, timer = null;
-      function start() {
-        stop();
-        timer = setInterval(function () {
-          if (!hovered && !focused) navigateBy(1);
-        }, Math.max(cfg.autoplayDelay, 600));
-      }
-      function stop() { if (timer) clearInterval(timer); timer = null; }
-      root.addEventListener("mouseenter", function () { hovered = true; });
-      root.addEventListener("mouseleave", function () { hovered = false; });
-      root.addEventListener("focusin", function () { focused = true; });
-      root.addEventListener("focusout", function () { focused = false; });
-      start();
-    }
-
-    layout(0);
-    setActiveDot(0);
+    window.addEventListener("resize", measure);
+    measure();
   }
 
-  var locCarousel = document.getElementById("locCarousel");
-  if (locCarousel) initDepthCarousel(locCarousel, {});
+  var locGallery = document.getElementById("locGallery");
+  if (locGallery) initAccordionGallery(locGallery, {});
 </script>
 
 </body>
