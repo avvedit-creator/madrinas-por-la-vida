@@ -88,41 +88,50 @@
 
   section{padding:56px 0;}
 
-  /* Oración por el Niño por Nacer */
-  .oracion-layout{display:flex;align-items:center;justify-content:center;gap:44px;}
-  .oracion-art{flex:0 0 260px;max-width:260px;}
-  .oracion-art img{
-    width:100%;height:auto;display:block;
-    -webkit-mask-image:radial-gradient(ellipse 62% 58% at center, #000 55%, transparent 88%);
-    mask-image:radial-gradient(ellipse 62% 58% at center, #000 55%, transparent 88%);
+  /* Scroll Portal: Oración por el Niño por Nacer + Santo Rosario */
+  .scroll-portal{position:relative;background:var(--ink);}
+  .scroll-portal__pin{position:relative;height:280vh;}
+  .scroll-portal__stage{
+    position:sticky;top:0;height:100vh;overflow:hidden;
+    display:flex;align-items:center;justify-content:center;
+    perspective:1000px;background:var(--ink);
   }
-  @media (max-width:900px){ .oracion-art{display:none;} }
-  .oracion-card{
-    flex:1 1 620px;max-width:620px;
-    text-align:center;background:var(--paper-alt);
-    border-radius:20px;padding:56px 40px;border-top:3px solid var(--primary);
+  .sp-frame{
+    position:absolute;top:50%;left:50%;width:min(600px,86vw);max-height:76vh;overflow:auto;
+    transform:translate(-50%,-50%);scrollbar-width:none;
+    border-radius:18px;border:1px solid rgba(255,255,255,.16);
+    background:var(--paper);color:var(--ink);
+    padding:52px 44px;box-shadow:0 50px 100px -30px rgba(0,0,0,.65);
+    will-change:transform,opacity,filter;
   }
-  .oracion-title{font-size:clamp(22px,3vw,28px);font-weight:600;margin:12px 0 30px;}
-  .oracion-text{
-    font-family:'Lora',serif;font-style:italic;font-size:17.5px;line-height:2;
-    color:var(--ink);text-align:center;
-  }
-  .oracion-amen{
-    display:block;margin-top:20px;font-style:normal;font-weight:700;
-    letter-spacing:.04em;color:var(--primary-dark);
-  }
-  @media (max-width:600px){ .oracion-card{padding:40px 24px;} .oracion-text{font-size:16px;} }
+  .sp-frame::-webkit-scrollbar{display:none;}
+  .sp-frame__bg{position:absolute;inset:0;z-index:0;opacity:.14;background-size:cover;background-position:center;filter:grayscale(25%);border-radius:inherit;}
+  .sp-frame__inner{position:relative;z-index:1;text-align:center;}
+  .sp-frame .eyebrow{color:var(--primary);}
+  .sp-frame h2{font-size:clamp(22px,3vw,28px);margin:10px 0 26px;}
+  .sp-oracion-text{font-family:'Lora',serif;font-style:italic;font-size:17px;line-height:2;}
+  .sp-oracion-text .oracion-amen{display:block;margin-top:18px;font-style:normal;font-weight:700;letter-spacing:.04em;color:var(--primary-dark);}
+  .sp-frame .rosario-intro p{color:var(--muted);font-size:15.5px;}
+  .sp-frame .rosario-intenciones{text-align:left;}
+  .sp-frame .rosario-intenciones h3{text-align:center;}
+  .sp-scroll-cue{margin-top:30px;font-size:13px;color:var(--muted);display:flex;flex-direction:column;align-items:center;gap:6px;}
+  .sp-scroll-cue svg{animation:sp-bounce 1.6s ease-in-out infinite;}
+  @keyframes sp-bounce{0%,100%{transform:translateY(0);}50%{transform:translateY(6px);}}
 
-  /* Rosario */
-  .rosario-layout{display:flex;gap:44px;align-items:flex-start;justify-content:center;}
-  .rosario-content{flex:1 1 660px;max-width:660px;}
-  .rosario-art{flex:0 0 260px;max-width:260px;position:sticky;top:100px;}
-  .rosario-art img{
-    width:100%;height:auto;display:block;
-    -webkit-mask-image:radial-gradient(ellipse 62% 58% at center, #000 55%, transparent 88%);
-    mask-image:radial-gradient(ellipse 62% 58% at center, #000 55%, transparent 88%);
+  .scroll-portal__progress{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);z-index:10;display:flex;gap:8px;}
+  .scroll-portal__progress span{width:7px;height:7px;border-radius:999px;background:rgba(255,255,255,.35);transition:width .25s ease,background .25s ease;}
+  .scroll-portal__progress span.is-active{width:20px;background:var(--gold);}
+
+  @media (max-width:600px){ .sp-frame{padding:40px 26px;} }
+  @media (prefers-reduced-motion: reduce){
+    .scroll-portal__pin{height:auto;}
+    .scroll-portal__stage{position:static;height:auto;display:block;perspective:none;padding:64px 0;}
+    .sp-frame{position:static;transform:none !important;opacity:1 !important;filter:none !important;margin:0 auto 32px;max-height:none;overflow:visible;}
+    .scroll-portal__progress{display:none;}
   }
-  @media (max-width:900px){ .rosario-art{display:none;} }
+
+  /* Rosario, paso a paso (continúa en flujo normal tras el Scroll Portal) */
+  .rosario-steps{background:var(--paper);}
   .rosario-intro{text-align:center;margin-bottom:44px;}
   .rosario-intro h2{font-size:clamp(24px,3.4vw,32px);margin-bottom:14px;}
   .rosario-intro p{color:var(--muted);font-size:16px;}
@@ -208,57 +217,76 @@
   </div>
 </div>
 
-<section class="oracion" id="oracion">
-  <div class="container">
-    <div class="oracion-layout">
-    <div class="oracion-card">
-      <span class="eyebrow">Oración</span>
-      <h2 class="oracion-title">Oración por el Niño por Nacer</h2>
-      <p class="oracion-text">
-        Señor de la vida,<br>
-        Tú que formaste mi ser en el seno materno,<br>
-        te pido que protejas a cada niño por nacer.<br>
-        Dales fuerza a sus madres para acogerlos con amor,<br>
-        y fe a sus padres para guiarlos en tu camino.<br>
-        Que cada vida sea vista como un regalo,<br>
-        un reflejo de tu amor y tu voluntad.<br>
-        Cuida a los más pequeños e indefensos,<br>
-        y despierta en todos el respeto por la vida.<br>
-        María, Madre de la Vida,<br>
-        intercede por cada niño aún no nacido,<br>
-        para que puedan ver la luz del día<br>
-        y crecer bajo la bendición de Dios.
-        <span class="oracion-amen">Amén.</span>
-      </p>
+<section class="scroll-portal" id="oracion">
+  <div class="scroll-portal__pin">
+    <div class="scroll-portal__stage" id="scrollPortal">
+
+      <div class="sp-frame" data-scene="0">
+        <span class="sp-frame__bg" style="background-image:url('../assets/virgen-carmen.jpg')"></span>
+        <div class="sp-frame__inner">
+          <span class="eyebrow">Oración</span>
+          <h2>Oración por el Niño por Nacer</h2>
+          <p class="sp-oracion-text">
+            Señor de la vida,<br>
+            Tú que formaste mi ser en el seno materno,<br>
+            te pido que protejas a cada niño por nacer.<br>
+            Dales fuerza a sus madres para acogerlos con amor,<br>
+            y fe a sus padres para guiarlos en tu camino.<br>
+            Que cada vida sea vista como un regalo,<br>
+            un reflejo de tu amor y tu voluntad.<br>
+            Cuida a los más pequeños e indefensos,<br>
+            y despierta en todos el respeto por la vida.<br>
+            María, Madre de la Vida,<br>
+            intercede por cada niño aún no nacido,<br>
+            para que puedan ver la luz del día<br>
+            y crecer bajo la bendición de Dios.
+            <span class="oracion-amen">Amén.</span>
+          </p>
+        </div>
+      </div>
+
+      <div class="sp-frame" data-scene="1">
+        <span class="sp-frame__bg" style="background-image:url('../assets/virgen-perpetuo-socorro.jpg')"></span>
+        <div class="sp-frame__inner">
+          <div class="rosario-intro">
+            <span class="eyebrow">Oración</span>
+            <h2>Santo Rosario por la Vida</h2>
+            <p>Se reza siguiendo el esquema común de cualquier rosario; la diferencia está en que existe una intención particular para añadir a cada Misterio de tu Rosario diario.</p>
+          </div>
+          <div class="rosario-intenciones">
+            <h3>Intenciones para cada Misterio</h3>
+            <ol>
+              <li><strong>Misterio 1.</strong> María: Ruega por las mujeres embarazadas. Que comprendan que ese ser que crece en su interior no es parte de su cuerpo, ni células descartables, ni una carga, sino un hijo, un ser humano en desarrollo, con derecho a disfrutar la vida que Dios le da.</li>
+              <li><strong>Misterio 2.</strong> María: Ruega para que las embarazadas resistan la presión, sea social o familiar, de quienes las quieren convencer de abortar.</li>
+              <li><strong>Misterio 3.</strong> María: Por tu medio ofrecemos a Dios este Misterio en reparación por los millones de abortos realizados en el mundo y por la conversión de quienes han convertido el aborto en lucrativo negocio.</li>
+              <li><strong>Misterio 4.</strong> María: Ruega por los afectados por el aborto. Las mujeres, que siempre quedan con grave daño físico y espiritual; hallen en Dios perdón y paz. Y a sus parejas y parientes que sufren el duelo de su ser amado abortado, dales consuelo.</li>
+              <li><strong>Misterio 5.</strong> María: Ruega por los provida: en especial por los que legislan a favor de la vida; los que oran afuera de abortorios, y los médicos y enfermeras que se niegan a realizar abortos aunque los despidan. Protégelos y ayúdalos para que su esfuerzo rinda abundante fruto.</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <div class="sp-frame" data-scene="2">
+        <div class="sp-frame__inner">
+          <span class="eyebrow">Oración</span>
+          <h2>Cómo rezar el Rosario, paso a paso</h2>
+          <p style="color:var(--muted);font-size:15.5px;">Seguí el esquema clásico del Rosario, incorporando en cada Misterio la intención correspondiente.</p>
+          <div class="sp-scroll-cue">
+            Seguí bajando para ver los 7 pasos
+            <svg viewBox="0 0 24 24" width="18" height="18"><path d="M12 5v14M5 12l7 7 7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </div>
+      </div>
+
     </div>
-    <div class="oracion-art">
-      <img src="../assets/virgen-carmen.jpg" alt="Virgen del Carmen" loading="lazy">
-    </div>
+    <div class="scroll-portal__progress" id="scrollPortalProgress">
+      <span class="is-active"></span><span></span><span></span>
     </div>
   </div>
 </section>
 
-<section class="rosario" id="rosario">
-  <div class="container">
-    <div class="rosario-layout">
-    <div class="rosario-content">
-    <div class="rosario-intro">
-      <span class="eyebrow">Oración</span>
-      <h2>Santo Rosario por la Vida</h2>
-      <p>Se reza siguiendo el esquema común de cualquier rosario; la diferencia está en que existe una intención particular para añadir a cada Misterio de tu Rosario diario.</p>
-    </div>
-
-    <div class="rosario-intenciones">
-      <h3>Intenciones para cada Misterio</h3>
-      <ol>
-        <li><strong>Misterio 1.</strong> María: Ruega por las mujeres embarazadas. Que comprendan que ese ser que crece en su interior no es parte de su cuerpo, ni células descartables, ni una carga, sino un hijo, un ser humano en desarrollo, con derecho a disfrutar la vida que Dios le da.</li>
-        <li><strong>Misterio 2.</strong> María: Ruega para que las embarazadas resistan la presión, sea social o familiar, de quienes las quieren convencer de abortar.</li>
-        <li><strong>Misterio 3.</strong> María: Por tu medio ofrecemos a Dios este Misterio en reparación por los millones de abortos realizados en el mundo y por la conversión de quienes han convertido el aborto en lucrativo negocio.</li>
-        <li><strong>Misterio 4.</strong> María: Ruega por los afectados por el aborto. Las mujeres, que siempre quedan con grave daño físico y espiritual; hallen en Dios perdón y paz. Y a sus parejas y parientes que sufren el duelo de su ser amado abortado, dales consuelo.</li>
-        <li><strong>Misterio 5.</strong> María: Ruega por los provida: en especial por los que legislan a favor de la vida; los que oran afuera de abortorios, y los médicos y enfermeras que se niegan a realizar abortos aunque los despidan. Protégelos y ayúdalos para que su esfuerzo rinda abundante fruto.</li>
-      </ol>
-    </div>
-
+<section class="rosario-steps" id="rosario">
+  <div class="container-narrow">
     <div class="rosario-pasos">
       <h3>Cómo rezar el Rosario, paso a paso</h3>
 
@@ -382,11 +410,6 @@
     </div>
 
     <p class="rosario-fuente">Fuente: <a href="https://desdelafe.mx/rosarios/rosario-por-la-vida-como-se-reza/" target="_blank" rel="noopener">desdelafe.mx</a></p>
-    </div>
-    <div class="rosario-art">
-      <img src="../assets/virgen-perpetuo-socorro.jpg" alt="Nuestra Señora del Perpetuo Socorro" loading="lazy">
-    </div>
-    </div>
   </div>
 </section>
 
@@ -465,6 +488,84 @@
       copiarConExecCommand();
     }
   }
+
+  function initScrollPortal(root, opts) {
+    var cfg = Object.assign({
+      frameDepth: 260, hold: 0.12, scrub: 0.35, dim: 0.55, mobileBreakpoint: 768
+    }, opts || {});
+
+    var pinEl = root.parentElement;
+    var frames = Array.prototype.slice.call(root.querySelectorAll(".sp-frame"));
+    var dots = Array.prototype.slice.call(document.querySelectorAll("#scrollPortalProgress span"));
+    var n = frames.length;
+    if (!n) return;
+
+    var reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduced) return;
+
+    var target = 0, displayed = 0, lastT = null;
+
+    function clamp(v, min, max) { return Math.min(Math.max(v, min), max); }
+
+    function computeTarget() {
+      var rect = pinEl.getBoundingClientRect();
+      var stageH = window.innerHeight;
+      var scrollable = pinEl.offsetHeight - stageH;
+      if (scrollable <= 0) { target = 0; return; }
+      var p = clamp(-rect.top / scrollable, 0, 1);
+      var segLen = 1 / (n - 1);
+      var segIdx = Math.min(n - 2, Math.floor(p / segLen));
+      var local = (p - segIdx * segLen) / segLen;
+      var camera = local < cfg.hold ? segIdx : segIdx + (local - cfg.hold) / (1 - cfg.hold);
+      target = clamp(camera, 0, n - 1);
+    }
+
+    function layout() {
+      var mobile = window.innerWidth < cfg.mobileBreakpoint;
+      var depth = mobile ? cfg.frameDepth * 0.55 : cfg.frameDepth;
+      frames.forEach(function (frame, i) {
+        var d = i - displayed;
+        var scale, tz, opacity, dim;
+        if (d >= 0) {
+          scale = 1 - Math.min(d, 1) * 0.45;
+          tz = -d * depth;
+          opacity = d <= 1.05 ? clamp(1 - Math.max(0, d - 0.85) / 0.2, 0, 1) : 0;
+          dim = Math.min(1, d) * cfg.dim;
+        } else {
+          var ad = -d;
+          scale = 1 + Math.min(ad, 1) * 0.9;
+          tz = -d * depth;
+          opacity = clamp(1 - ad, 0, 1);
+          dim = Math.min(1, ad) * cfg.dim;
+        }
+        frame.style.transform = "translate(-50%, -50%) scale(" + scale.toFixed(3) + ") translateZ(" + tz.toFixed(1) + "px)";
+        frame.style.opacity = opacity.toFixed(3);
+        frame.style.filter = "brightness(" + (1 - dim).toFixed(3) + ")";
+        frame.style.pointerEvents = opacity > 0.6 ? "auto" : "none";
+        frame.style.zIndex = String(Math.round(1000 - d * 10));
+      });
+
+      var activeDot = clamp(Math.round(displayed), 0, n - 1);
+      dots.forEach(function (dot, i) { dot.classList.toggle("is-active", i === activeDot); });
+    }
+
+    function tick(t) {
+      if (lastT === null) lastT = t;
+      var dt = (t - lastT) / 1000;
+      lastT = t;
+      computeTarget();
+      var factor = cfg.scrub > 0 ? clamp(dt / cfg.scrub, 0, 1) : 1;
+      displayed += (target - displayed) * factor;
+      if (Math.abs(target - displayed) < 0.001) displayed = target;
+      layout();
+      requestAnimationFrame(tick);
+    }
+
+    requestAnimationFrame(tick);
+  }
+
+  var scrollPortal = document.getElementById("scrollPortal");
+  if (scrollPortal) initScrollPortal(scrollPortal, {});
 </script>
 
 </body>
