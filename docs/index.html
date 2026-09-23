@@ -262,12 +262,43 @@
   .ayudar .eyebrow{color:var(--gold);}
   .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
   .card{
+    position:relative;overflow:hidden;
     background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);
     border-radius:14px;padding:30px 26px;
+    transition:transform .3s ease,border-color .3s ease,background .3s ease,box-shadow .3s ease;
   }
+  .card:hover{
+    transform:translateY(-5px);border-color:rgba(203,190,139,.4);
+    background:rgba(255,255,255,.085);box-shadow:0 24px 44px -22px rgba(0,0,0,.5);
+  }
+  .card-blob{
+    position:absolute;top:-70px;left:-60px;width:200px;height:200px;border-radius:50%;
+    filter:blur(42px);opacity:.32;pointer-events:none;z-index:0;
+    transition:opacity .35s ease,transform .35s ease;
+  }
+  .card:nth-child(1) .card-blob{background:radial-gradient(circle, var(--gold), transparent 70%);}
+  .card:nth-child(2) .card-blob{background:radial-gradient(circle, var(--primary-dark), transparent 70%);left:auto;right:-60px;}
+  .card:nth-child(3) .card-blob{background:radial-gradient(circle, #C99A82, transparent 70%);}
+  .card:hover .card-blob{opacity:.5;transform:scale(1.15);}
+  .card-head{position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;gap:10px;}
+  .card-icon{
+    width:46px;height:46px;border-radius:12px;flex-shrink:0;
+    display:flex;align-items:center;justify-content:center;
+    background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);
+  }
+  .card-icon svg{width:22px;height:22px;color:var(--gold);}
+  .card-arrow{
+    width:30px;height:30px;border-radius:50%;flex-shrink:0;
+    display:flex;align-items:center;justify-content:center;
+    border:1px solid rgba(255,255,255,.18);color:rgba(255,255,255,.45);
+    opacity:0;transform:translateX(-6px);
+    transition:opacity .3s ease,transform .3s ease,border-color .3s ease,color .3s ease;
+  }
+  .card-arrow svg{width:14px;height:14px;}
+  .card:hover .card-arrow{opacity:1;transform:translateX(0);border-color:var(--gold);color:var(--gold);}
   .card .num{font-family:'Lora',serif;font-style:italic;color:var(--gold);font-size:15px;}
-  .card h3{margin-top:14px;font-size:19px;}
-  .card p{margin-top:10px;color:rgba(255,255,255,.68);font-size:14.5px;}
+  .card h3{position:relative;z-index:1;margin-top:18px;font-size:19px;}
+  .card p{position:relative;z-index:1;margin-top:10px;color:rgba(255,255,255,.68);font-size:14.5px;}
   .card-account{
     margin-top:14px;display:inline-flex;align-items:center;gap:8px;cursor:pointer;
     padding:9px 12px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);
@@ -504,12 +535,28 @@
     </div>
     <div class="cards">
       <div class="card">
-        <span class="num">01</span>
+        <span class="card-blob" aria-hidden="true"></span>
+        <div class="card-head">
+          <span class="card-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20.5s-7.5-4.7-9.8-9.3C.6 7.9 2 4.5 5.3 3.6c2-.5 4 .3 5.2 2 .3.4.9.4 1.2 0 1.2-1.7 3.2-2.5 5.2-2 3.3.9 4.7 4.3 3.1 7.6C19.5 15.8 12 20.5 12 20.5Z"/></svg>
+          </span>
+          <span class="card-arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </span>
+        </div>
         <h3>Ser madrina</h3>
         <p>Acompañá de cerca a una madre joven en su proceso, con contención afectiva y presencia constante.</p>
       </div>
       <div class="card">
-        <span class="num">02</span>
+        <span class="card-blob" aria-hidden="true"></span>
+        <div class="card-head">
+          <span class="card-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="13" rx="1.5"/><path d="M3 12h18M12 8v13"/><path d="M12 8c-1.8 0-3-1-3-2.5S10.2 3 12 3c0 0 0 2.5 0 5Zm0 0c1.8 0 3-1 3-2.5S13.8 3 12 3c0 0 0 2.5 0 5Z"/></svg>
+          </span>
+          <span class="card-arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </span>
+        </div>
         <h3>Donar</h3>
         <p>Colaborá con dinero o con artículos para las madres y sus bebés: ropa, alimentos, elementos de higiene.</p>
         <div class="card-account" data-copy="Banco Itaú CA 0020486" onclick="copiarValor(this)">
@@ -519,7 +566,15 @@
         </div>
       </div>
       <div class="card">
-        <span class="num">03</span>
+        <span class="card-blob" aria-hidden="true"></span>
+        <div class="card-head">
+          <span class="card-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="8.5" cy="8" r="3"/><circle cx="16" cy="8.5" r="2.5"/><path d="M2.5 20c0-3.3 2.7-5.5 6-5.5s6 2.2 6 5.5M14.5 14.8c2.8.3 4.9 2.3 5 5.2"/></svg>
+          </span>
+          <span class="card-arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </span>
+        </div>
         <h3>Ser voluntaria/o</h3>
         <p>Sumá tu tiempo y tus habilidades a los talleres, encuentros y tareas de la organización.</p>
       </div>
